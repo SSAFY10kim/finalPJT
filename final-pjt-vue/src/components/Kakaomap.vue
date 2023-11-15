@@ -1,5 +1,11 @@
 <template>
     <div class="map_wrap">
+      <div>
+        <label for=""></label>
+        <select>
+
+        </select>
+      </div>
       <div id="map" style="width:90%;height:500px;position:relative;overflow:hidden;"></div>
       <div id="menu_wrap" class="bg_white">
           <div class="option">
@@ -12,7 +18,7 @@
           </div>
           <hr>
           <ul id="placesList"></ul>
-          <div id="pagination"></div>
+          <div id="pagination"></div> 
       </div>
   </div>
   </template>
@@ -64,7 +70,7 @@
   const infowindow = ref(null); // infowindow 추가
   const markers = ref([])
   let marker = ''
-  const keyword = ref('부산은행')
+  const keyword = ref('부산 부산은행')
   
   const MAP_API_KEY = import.meta.env.VITE_MAP_API_KEY
 
@@ -290,9 +296,9 @@
   
   // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
   // 인포윈도우에 장소명을 표시합니다
-  function displayInfowindow(marker, title) {
+  function displayInfowindow(marker, title, urls) {
       var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
-  
+    
       infowindow.value.setContent(content);
       infowindow.value.open(map.value, marker);
   }
