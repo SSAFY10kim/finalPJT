@@ -10,4 +10,7 @@ API_KEY = settings.MONEY_API_KEY
 
 @api_view(['GET'])
 def money_data(request):
-    url = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON'
+    url = f'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey={API_KEY}&data=AP01'
+
+    data = requests.get(url)
+    return Response(data.json())
