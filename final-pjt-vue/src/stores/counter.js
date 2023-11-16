@@ -88,5 +88,34 @@ export const useCounterStore = defineStore('counter', () => {
       })
   }
 
-  return { articles, API_URL, getArticles, signUp, logIn, token, isLogin, logOut }
+  const deposits = ref([])
+  const savings = ref([])
+
+  const getDeposits = function () {
+    axios({
+      method: 'get',
+      url: `${API_URL}/api/v1/deposit/`,
+    })
+      .then((res) => {
+        deposits.value = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  const getSavings = function () {
+    axios({
+      method: 'get',
+      url: `${API_URL}/api/v1/saving/`, 
+    })
+      .then((res) => {
+        savings.value = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  return { articles, API_URL, getArticles, signUp, logIn, token, isLogin, logOut,
+          deposits, savings, getDeposits, getSavings  }
 }, { persist: true })

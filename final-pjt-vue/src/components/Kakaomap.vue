@@ -16,7 +16,7 @@
                   </form>
               </div>
           </div>
-          <hr>
+          <hr> 
           <ul id="placesList"></ul>
           <div id="pagination"></div> 
       </div>

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from allauth.account.adapter import DefaultAccountAdapter
-from articles.models import DepositProducts, InstallmentProducts
+from articles.models import DepositProducts, SavingProducts
 # Create your models here.
 
 class User(AbstractUser):
@@ -13,7 +13,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=3, null=True, blank=True)
     bank = models.CharField(max_length=10, null=True, blank=True)
     like_deposit = models.ManyToManyField(DepositProducts, related_name="like_deposit", blank=True, null=True)
-    like_installment = models.ManyToManyField(InstallmentProducts, related_name="like_installment", blank=True, null=True)
+    like_saving = models.ManyToManyField(SavingProducts, related_name="like_installment", blank=True, null=True)
     USERNAME_FIELD = 'username'
 
 
