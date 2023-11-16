@@ -17,6 +17,10 @@
                 class="saving-option"
             />
         </div>
+        <div v-if="save_type==='자유적립식'">
+            <label for="dates">만기일까지 일수 :</label>
+            <input v-model="dates" type="number" id="dates" />
+        </div>
         <div class="real-time-value">
             <p v-show="save_type==='정액적립식'">월 {{ customAmount }}만원씩 {{ month }}개월 간 적금하면 총 세후 이자 : {{ formatNumber(realTimeValue) }}원</p>
             <p v-show="save_type==='자유적립식'">{{ customAmount }}만원 적금시 만기일 까지 총 세후 이자 : {{ formatNumber(realTimeValue) }}원</p>
@@ -35,6 +39,7 @@ defineProps({
 
 const realTimeValue = ref('')
 const month = ref(null)
+const dates = ref(0)
 const save_type = ref("정액적립식")
 const customAmount = ref(1000000)
 
@@ -49,9 +54,9 @@ const updateRealTimeValue = (saving_option) => {
         }
     } else {
         if (saving_option.intr_rate_type_nm === "단리") {
-            realTimeValue.value = Math.round(customAmount.value * saving_option.intr_rate2 / 100 / 365 * (365 * saving_option.save_trm / 12) * 0.846)
+            realTimeValue.value = Math.round(customAmount.value * saving_option.intr_rate2 / 100 / 365 * dates.value * 0.846)
         } else {
-            realTimeValue.value = Math.round(customAmount.value * ((1 + saving_option.intr_rate2 / 100 / 365) ** (365 * saving_option.save_trm / 12) - 1) * 0.846)
+            realTimeValue.value = Math.round(customAmount.value * ((1 + saving_option.intr_rate2 / 100 / 365) ** dates.value - 1) * 0.846)
         }
     }
 }
