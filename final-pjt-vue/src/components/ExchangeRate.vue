@@ -42,7 +42,7 @@
 import { ref, onMounted, computed, watch } from 'vue';
 import axios from 'axios';
 
-const API_URL = `http://127.0.0.1:8000/api/v1/articles/`;
+const API_URL = `http://127.0.0.1:8000/api/v1/create_data/`;
 
 const data = ref([]);
 const myMoney = ref(0);
@@ -102,6 +102,7 @@ const createExchangeMoney = () => {
   axios
     .get(API_URL)
     .then(res => {
+      console.log(res)
       data.value = res.data;
       myCountry.value = data.value[13].deal_bas_r; // 초기 선택값 설정
       changeCountry.value = data.value[22].deal_bas_r; // 초기 선택값 설정
