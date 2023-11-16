@@ -132,6 +132,7 @@ def save_saving(request):
         intr_rate = option.get('intr_rate')
         intr_rate2 = option.get('intr_rate2')
         save_trm = option.get('save_trm')
+        rsrv_type_nm = option.get('rsrv_type_nm')
 
 
         # 어떤 상품의 옵션인지 검색
@@ -140,6 +141,7 @@ def save_saving(request):
         if SavingOptions.objects.filter(product=saving_product.id,
                                          intr_rate_type_nm=intr_rate_type_nm,
                                          save_trm=save_trm,
+                                         rsrv_type_nm=rsrv_type_nm,
                                          intr_rate=intr_rate,
                                          intr_rate2=intr_rate2).exists():
             continue
