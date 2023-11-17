@@ -13,6 +13,7 @@ import SignUpView from '@/views/SignUpView.vue'
 import LogInView from '@/views/LogInView.vue'
 import SavingView from '@/components/SavingView.vue'
 import DepositView from '@/components/DepositView.vue'
+// import CommentsList from '@/components/CommentsList.vue'
 
 
 const router = createRouter({
@@ -25,7 +26,7 @@ const router = createRouter({
     },
     {
       path: '/depositinfo',
-      name: 'deposit',
+      name: 'deposit-info',
       component: DepositInfoView
     },
     {
@@ -83,6 +84,11 @@ const router = createRouter({
       name: 'saving',
       component: SavingView
     },
+    // {
+    //   path: '/comments',
+    //   name: 'comments',
+    //   component: CommentsList,
+    // }
 
   ]
 })

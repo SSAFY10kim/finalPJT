@@ -16,13 +16,13 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .serializers import *
 import requests
-from .models import Articles
+from .models import Articles, Comments
 
-API_KEY_MONEY = settings.MONEY_API_KEY
+MONEY_API_KEY = settings.MONEY_API_KEY
 
 @api_view(['GET'])
 def money_data(request):
-    url = f'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey={API_KEY_MONEY}&data=AP01'
+    url = f'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey={MONEY_API_KEY}&data=AP01'
 
     data = requests.get(url)
     return Response(data.json())
@@ -44,7 +44,8 @@ def article_list(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
-@api_view(['GET'])
+@api_view(['GET', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def article_detail(request, article_pk):
     article = get_object_or_404(Articles, pk=article_pk)
 
@@ -53,7 +54,40 @@ def article_detail(request, article_pk):
         print(serializer.data)
         return Response(serializer.data)
     
+    elif request.method == 'DELETE':
+        article.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['GET'])
+def comment_list(request):
+    comments = Comments.objects.all()
+    serializers = CommentSerializer(comments, many=True)
+    return Response(serializers.data)
 
+@api_view(['GET', 'DELETE', 'PUT'])
+@permission_classes([IsAuthenticated])
+def comment_detail(request, comment_pk):
+    comment = Comments.objects.get(pk=comment_pk)
+    if request.method == 'GET':
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def comment_create(request, article_pk):
+    # print('123123123123')
+    article = Articles.objects.get(pk=article_pk)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(article=article, user=request.user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+# 금융 상품 불러오기
 BASE_URL = 'http://finlife.fss.or.kr/'
 API_KEY = settings.API_KEY_BANK
 API_URL_DEPOSIT = 'finlifeapi/depositProductsSearch.json'

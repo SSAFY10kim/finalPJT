@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import Articles, Comments
 from .models import DepositProducts, DepositOptions, SavingProducts, SavingOptions
-
+from django.conf import settings
+from accounts.serializers import CustomRegisterSerializer
 
 class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,13 +11,16 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    user_username = serializers.CharField(source='user.username', read_only=True)
+
     class Meta:
         model = Comments
         fields = '__all__'
-        read_only_fields = ('article',)
+        read_only_fields = ('article', 'user')
 
 
 class ArticleSerializer(serializers.ModelSerializer):
+    user_username = serializers.CharField(source='user.username', read_only=True)
     comment_set = CommentSerializer(many=True, read_only=True)
     comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
     class Meta:

@@ -1,34 +1,48 @@
 <template>
     <div class="map_wrap">
       <div>
-        <label for=""></label>
-        <select>
-
-        </select>
+        <div class="search_option">
+            <span>
+              <label for="sido1">시/도</label>
+              <select v-model="selectLocal1">
+                <option v-for="local1 in localType1" :value="local1">{{ local1 }}</option>            
+              </select>
+            </span>
+            <span>
+              <label for="gugun1">구/군</label>
+              <select v-model="selectLocal2">
+                <option v-for="local2 in localType2" :value="local2">{{ local2 }}</option>            
+              </select>
+            </span>
+            <span>
+              <label for="dong1">동</label>
+              <select v-model="selectLocal3">
+                <option v-for="local3 in localType3" :value="local3">{{ local3 }}</option>            
+              </select>
+            </span>
+            <span>
+              <label for="bank1">검색은행</label>
+              <select v-model="selectedBank">
+                <option v-for="bank in banks" :key="bank">{{ bank }}</option>
+              </select>
+            </span>
+          </div>
+          <button @click="searchPlaces">검색하기</button>
       </div>
       <div id="map" style="width:90%;height:500px;position:relative;overflow:hidden;"></div>
       <div id="menu_wrap" class="bg_white">
-          <div class="option">
-              <div>
-                  <form @submit.prevent="searchPlaces">
-                      키워드 : <input type="text" v-model="keyword" id="keyword" size="15"> 
-                      <button type="submit">검색하기</button> 
-                  </form>
-              </div>
-          </div>
-          <hr> 
-          <ul id="placesList"></ul>
-          <div id="pagination"></div> 
+        <ul id="placesList"></ul>
+        <div id="pagination"></div> 
       </div>
   </div>
   </template>
-  
+
 
 <style scoped>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+#menu_wrap {position:absolute;top:20%;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -61,16 +75,29 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+
+.search_option {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.search_option span {
+  margin-right: 10px;
+}
 </style>
   
-  <script setup>
-  import { ref, onMounted } from 'vue';
+<script setup>
+import { ref, onMounted, computed, watch } from 'vue';
+    
+import { useCounterStore } from '@/stores/counter'
+
+import local from "@/assets/region.json"
   
   const map = ref(null);
   const infowindow = ref(null); // infowindow 추가
   const markers = ref([])
   let marker = ''
-  const keyword = ref('부산 부산은행')
+  const keyword = ref('')
   
   const MAP_API_KEY = import.meta.env.VITE_MAP_API_KEY
 
@@ -100,14 +127,13 @@
     const container = document.getElementById("map");
     const options = {
       center: new window.kakao.maps.LatLng(37.566826, 126.9786567),
-      level: 3,
+      level: 4,
     };
   
     map.value = new window.kakao.maps.Map(container, options);
     infowindow.value = new window.kakao.maps.InfoWindow({ zIndex: 1 }); // Correct initialization
     
     // 키워드로 장소를 검색합니다
-    searchPlaces();
     
     // 키워드 검색을 요청하는 함수입니다
 
@@ -118,7 +144,7 @@
   };
   const searchPlaces = function() {
       // preventDefault()
-      const keywordValue = keyword.value.trim() + '은행';
+      const keywordValue = `${selectLocal1.value} ${selectLocal2.value} ${selectLocal3.value} ${selectedBank.value}` 
       if (!keywordValue) {
         alert('키워드를 입력해주세요!');
         return;
@@ -126,8 +152,6 @@
       const ps = new kakao.maps.services.Places();
       // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
       ps.keywordSearch(keywordValue, placesSearchCB); 
-      
-      keyword.value = ''
     }
   function placesSearchCB(data, status, pagination) {
       if (status === kakao.maps.services.Status.OK) {
@@ -309,4 +333,25 @@
           el.removeChild (el.lastChild);
       }
   }
-  </script>
+
+
+const store = useCounterStore()
+
+const selectLocal1 = ref(Object.keys(local)[0])
+const selectLocal2 = ref(Object.keys(local[selectLocal1.value])[0])
+const selectLocal3 = ref(local[selectLocal1.value][selectLocal2.value][0])
+
+const localType1 = ref(Object.keys(local))
+const localType2 = computed(() => {
+  return Object.keys(local[selectLocal1.value])
+})
+const localType3 = computed(() => {
+  return local[selectLocal1.value][selectLocal2.value]
+})
+
+
+const banks = ["은행선택","국민은행","우리은행","신한은행","KEB하나은행","한국스탠다드차타드은행","외한은행","한국시티은행","경남은행","광주은행","대구은행","부산은행","전북은행","제주은행","기업은행","농협","수협","한국산업은행","한국수출입은행"]
+const selectedBank = ref(banks[0])
+
+// console.log(region)
+</script>

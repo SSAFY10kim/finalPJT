@@ -6,6 +6,8 @@ import axios from 'axios'
 export const useCounterStore = defineStore('counter', () => {
   const router = useRouter()
   const articles = ref([])
+  const comments = ref([])
+  const searchKeyword = ref('')
   const API_URL = 'http://127.0.0.1:8000'
   const token = ref(null)
   const isLogin = computed(() => {
@@ -32,6 +34,22 @@ export const useCounterStore = defineStore('counter', () => {
       .catch((err) => {
         console.log(err)
       })
+  }
+  
+  const getComments = function () {
+    axios({
+      method: 'get',
+      url: `${API_URL}/api/v1/comments`,
+      headers: {
+        Authorization: `Token ${token.value}`
+      }
+    }).then((res) => {
+      console.log(res)
+      comments.value = res.data
+    }).catch((err) => {
+      console.log(err)
+    })
+
   }
 
   const signUp = function (payload) {
@@ -115,7 +133,11 @@ export const useCounterStore = defineStore('counter', () => {
         console.log(err)
       })
   }
+  const getKeyword = function (data1, data2, data3, data4) {
+    searchKeyword.value = 'data1' + ' ' + 'data2' + ' ' + 'data3' + ' ' + 'data4'
+  }
 
   return { articles, API_URL, getArticles, signUp, logIn, token, isLogin, logOut,
-          deposits, savings, getDeposits, getSavings  }
+          deposits, savings, getDeposits, getSavings, getComments, comments, searchKeyword, getKeyword
+            }
 }, { persist: true })
