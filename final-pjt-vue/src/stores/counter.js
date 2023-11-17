@@ -32,6 +32,7 @@ export const useCounterStore = defineStore('counter', () => {
         articles.value = res.data
       })
       .catch((err) => {
+        articles.value = []
         console.log(err)
       })
   }
@@ -59,7 +60,7 @@ export const useCounterStore = defineStore('counter', () => {
       method: 'post',
       url: `${API_URL}/accounts/signup/`,
       data: {
-        username, password1, password2
+        username, password1, password2, realname, age, money, salary, gender, bank
       }
     })
       .then((res) => {
@@ -69,6 +70,7 @@ export const useCounterStore = defineStore('counter', () => {
       })
       .catch((err) => {
         console.log(err)
+        console.log(gender)
       })
   }
 

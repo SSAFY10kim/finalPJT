@@ -8,6 +8,7 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 
 class CustomRegisterSerializer(RegisterSerializer):
     # 추가할 필드들을 정의합니다.
+    realname = serializers.CharField(required=False)
     age = serializers.IntegerField(required=False)
     money = serializers.IntegerField(required=False)
     salary = serializers.IntegerField(required=False)
@@ -16,6 +17,7 @@ class CustomRegisterSerializer(RegisterSerializer):
     def get_cleaned_data(self):
         return {
         'username': self.validated_data.get('username', ''),
+        'realname': self.validated_data.get('realname', ''),
         'password1': self.validated_data.get('password1', ''),
         'password2': self.validated_data.get('password2', ''),
         'age': self.validated_data.get('age', ''),

@@ -6,6 +6,7 @@ from articles.models import DepositProducts, SavingProducts
 
 class User(AbstractUser):
     username = models.CharField(max_length=30, unique=True)
+    realname = models.CharField(max_length=20, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
     age = models.IntegerField(null=True, blank=True)
     money = models.IntegerField(null=True, blank=True)
@@ -30,6 +31,7 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         last_name = data.get("last_name")
         email = data.get("email")
         username = data.get("username")
+        realname = data.get("realname")
         nickname = data.get("nickname")
         age = data.get("age")
         gender = data.get("gender")
@@ -39,6 +41,8 @@ class CustomAccountAdapter(DefaultAccountAdapter):
 
         user_email(user, email)
         user_username(user, username)
+        if realname:
+            user.realname = realname
         if first_name:
             user_field(user, "first_name", first_name)
         if last_name:

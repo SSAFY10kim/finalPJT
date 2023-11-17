@@ -91,10 +91,6 @@ const deleteArticle = function(id) {
     .then((res) => {
       console.log(res)
       store.getArticles()
-      article.value = null
-      if (localStorage.length === 1) {
-        localStorage.removeItem('article')
-      }
       router.push({name: 'community'})
     })
     .catch((err) => {

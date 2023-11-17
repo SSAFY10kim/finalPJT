@@ -9,7 +9,6 @@
     <RouterLink :to="{ name: 'profile' }">[프로필]</RouterLink> | 
     <header>
       <nav v-if="store.isLogin">
-        <RouterLink :to="{ name: 'article_list' }">Articles</RouterLink> |
         <form @submit.prevent="store.logOut">
           <input type="submit" value="logOut">
         </form>
