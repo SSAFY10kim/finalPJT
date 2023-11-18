@@ -14,7 +14,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=3, null=True, blank=True)
     bank = models.CharField(max_length=10, null=True, blank=True)
     like_deposit = models.ManyToManyField(DepositProducts, related_name="like_deposit", blank=True, null=True)
-    like_saving = models.ManyToManyField(SavingProducts, related_name="like_installment", blank=True, null=True)
+    like_saving = models.ManyToManyField(SavingProducts, related_name="like_saving", blank=True, null=True)
     USERNAME_FIELD = 'username'
 
 

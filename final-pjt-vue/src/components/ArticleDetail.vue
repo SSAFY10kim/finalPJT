@@ -9,14 +9,16 @@
     <p>수정일 : {{ article.updated_at }}</p>
     <p>{{ article.user_username }}</p>
     </div>
+    <p v-if="article">댓글 갯수 :{{ article.comment_count }}</p>
     <div>
         <form @submit.prevent="createComment">
             <input type="text" v-model="comment_content">
             <input type="submit">
         </form>
     </div>
-    <button @click="confirmDelete(route.params.id)">삭제</button>
-    <CommentsList :article-id="route.params.id"/>
+    <button @click="confirmDelete(route.params.id)">삭제
+    </button>
+    <CommentsList :article-id="route.params.id" @commentDeleted="refreshArticle()"/>
 </div>
 </template>
 
@@ -33,6 +35,7 @@ const route = useRoute()
 const router = useRouter()
 const article = ref(null)
 const comment_content = ref(null) 
+
 onMounted(() => {
 axios({
     method: 'get',
@@ -67,6 +70,21 @@ const createComment = function () {
       // router.push({ name: `community/articles/${route.params.id}` })
       store.getComments();
       comment_content.value = ''
+      // 댓글 갯수 갱신 (재통신...?)
+      axios({
+        method: 'get',
+        url: `${store.API_URL}/api/v1/articles/${route.params.id}/`,
+        headers: {
+            Authorization: `Token ${store.token}`
+          }
+      })
+        .then((res) => {
+        console.log(res.data)
+        article.value = res.data
+        })
+        .catch((err) => {
+        console.log(err)
+        })
     })
     .catch((err) => {
       console.log(err)
@@ -97,6 +115,24 @@ const deleteArticle = function(id) {
       console.log(err);
       alert('게시글 삭제 중 오류가 발생했습니다.');
     });
+}
+
+const refreshArticle = function() {
+  axios({
+    method: 'get',
+    url: `${store.API_URL}/api/v1/articles/${route.params.id}/`,
+    headers: {
+        Authorization: `Token ${store.token}`
+      }
+})
+    .then((res) => {
+    console.log(res.data)
+    article.value = res.data
+    })
+    .catch((err) => {
+    console.log(err)
+    
+    })
 }
 
 defineProps({

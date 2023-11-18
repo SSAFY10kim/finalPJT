@@ -16,7 +16,7 @@
         <input type="number" id="money" v-model.trim="money"><br>
         <label for="salary">연봉 : </label>
         <input type="number" id="salary" v-model.trim="salary"><br>
-        <label for="gender">이름 : </label>
+        <label for="gender">성별 : </label>
         <input type="text" id="gender" v-model.trim="gender"><br>
         <label for="bank">주거래 은행 : </label>
         <select id="bank" v-model="bank">

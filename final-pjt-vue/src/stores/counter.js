@@ -54,7 +54,7 @@ export const useCounterStore = defineStore('counter', () => {
   }
 
   const signUp = function (payload) {
-    const { username, password1, password2 } = payload
+    const { username, password1, password2, realname, age, money, salary, gender, bank } = payload
 
     axios({
       method: 'post',
@@ -65,12 +65,12 @@ export const useCounterStore = defineStore('counter', () => {
     })
       .then((res) => {
         console.log(res)
+        console.log('123123')
         const password = password1
         logIn({ username, password })
       })
       .catch((err) => {
         console.log(err)
-        console.log(gender)
       })
   }
 
@@ -135,11 +135,9 @@ export const useCounterStore = defineStore('counter', () => {
         console.log(err)
       })
   }
-  const getKeyword = function (data1, data2, data3, data4) {
-    searchKeyword.value = 'data1' + ' ' + 'data2' + ' ' + 'data3' + ' ' + 'data4'
-  }
+
 
   return { articles, API_URL, getArticles, signUp, logIn, token, isLogin, logOut,
-          deposits, savings, getDeposits, getSavings, getComments, comments, searchKeyword, getKeyword
+          deposits, savings, getDeposits, getSavings, getComments, comments, searchKeyword
             }
 }, { persist: true })

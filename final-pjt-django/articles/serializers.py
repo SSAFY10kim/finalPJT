@@ -22,7 +22,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     user_username = serializers.CharField(source='user.username', read_only=True)
     comment_set = CommentSerializer(many=True, read_only=True)
-    comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
+    comment_count = serializers.IntegerField(source='comments_set.count', read_only=True)
     class Meta:
         model = Articles
         fields = '__all__'

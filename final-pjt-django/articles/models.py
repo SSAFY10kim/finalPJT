@@ -48,7 +48,7 @@ class Like_Deposit(models.Model):
     fin_prdt_cd = models.TextField()
 
 class Like_Saving(models.Model):
-    user_id = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='linstallment')
+    user_id = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='lsaving')
     fin_prdt_cd = models.TextField()
     
 class Articles(models.Model):

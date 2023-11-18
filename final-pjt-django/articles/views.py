@@ -60,7 +60,7 @@ def article_detail(request, article_pk):
     
 @api_view(['GET'])
 def comment_list(request):
-    comments = Comments.objects.all()
+    comments = get_list_or_404(Comments)
     serializers = CommentSerializer(comments, many=True)
     return Response(serializers.data)
 

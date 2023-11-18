@@ -34,3 +34,16 @@ def save(self, request):
     adapter.save_user(request, user, self)
     self.custom_signup(request, user)
     return user
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields=['username','realname','age','money','salary','gender','bank', 'like_deposit', 'like_saving']
+        
+
+
+class ProfileUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['age','money','salary','gender','bank']

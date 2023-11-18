@@ -20,6 +20,8 @@ const props = defineProps({
   articleId: String,
 });
 
+const emit = defineEmits(['commentDeleted'])
+
 const confirmDelete = function (id) {
   if (window.confirm('정말로 삭제하시겠습니까?')) {
     deleteComment(id);
@@ -37,6 +39,8 @@ const deleteComment = function (id) {
   })
     .then((res) => {
       console.log(res);
+      // 게시글 디테일로 emit
+      emit('commentDeleted')
       // 삭제 성공 시, 다시 댓글 목록을 갱신
       store.getComments();
     })
