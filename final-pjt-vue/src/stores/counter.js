@@ -10,6 +10,8 @@ export const useCounterStore = defineStore('counter', () => {
   const searchKeyword = ref('')
   const API_URL = 'http://127.0.0.1:8000'
   const token = ref(null)
+  const LoginName = ref(null)
+  const userInfo = ref([])
   const isLogin = computed(() => {
     if (token.value === null) {
       return false
@@ -87,12 +89,33 @@ export const useCounterStore = defineStore('counter', () => {
       .then((res) => {
         console.log(res.data)
         token.value = res.data.key
+        LoginName.value = payload.username
+        getUser()
         router.push({ name: 'main' })
+        
       })
       .catch((err) => {
         console.log(err)
       })
   }
+
+  const getUser = function () {
+    if (isLogin.value === true) {
+    axios({
+      method: 'get',
+      url: `${API_URL}/accounts/profile/${LoginName.value}/`,
+      headers: {
+        Authorization: `Token ${token.value}`
+      }
+    })
+      .then((res) => {
+        console.log(res.data)
+        userInfo.value = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }}
 
   const logOut = function () {
     axios({
@@ -101,6 +124,8 @@ export const useCounterStore = defineStore('counter', () => {
     })
       .then((res) => {
         token.value = null
+        LoginName.value = null
+        userInfo.value = []
         router.push({ name: 'main' })
       })
       .catch((err) => {
@@ -138,6 +163,6 @@ export const useCounterStore = defineStore('counter', () => {
 
 
   return { articles, API_URL, getArticles, signUp, logIn, token, isLogin, logOut,
-          deposits, savings, getDeposits, getSavings, getComments, comments, searchKeyword
-            }
+          deposits, savings, getDeposits, getSavings, getComments, comments, searchKeyword,
+          getUser, LoginName, userInfo }
 }, { persist: true })

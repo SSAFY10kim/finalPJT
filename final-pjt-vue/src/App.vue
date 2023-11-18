@@ -6,7 +6,7 @@
     <RouterLink :to="{ name: 'exchange' }">[환율 계산기]</RouterLink> | 
     <RouterLink :to="{ name: 'search' }">[근처 은행 찾기]</RouterLink> | 
     <RouterLink :to="{ name: 'community' }">[게시판]</RouterLink> | 
-    <RouterLink :to="{ name: 'profile' }">[프로필]</RouterLink> | 
+    <RouterLink :to="{ name: 'profile', params: {name: store.LoginName}}" v-if="store.isLogin">[프로필]</RouterLink> | 
     <header>
       <nav v-if="store.isLogin">
         <form @submit.prevent="store.logOut">
@@ -26,8 +26,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { useCounterStore } from '@/stores/counter'
-
+import { ref } from 'vue';
 const store = useCounterStore()
+
+// console.log(user)
 </script>
 
 <style scoped>
