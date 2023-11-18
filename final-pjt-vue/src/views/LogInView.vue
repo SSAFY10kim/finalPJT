@@ -2,9 +2,11 @@
   <div>
     <h1>Login</h1>
     <form @submit.prevent="logIn">
-      <input type="text" v-model.trim="username">
-      <input type="password" v-model.trim="password">
-      <input type="submit">
+      <label for="username">아이디 : </label>
+      <input type="text" v-model.trim="username"><br>
+      <label for="password">비밀번호 : </label>
+      <input type="password" v-model.trim="password"><br>
+      <input type="submit" value="로그인">
     </form>
   </div>
 </template>
