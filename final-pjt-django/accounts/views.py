@@ -9,6 +9,8 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404, get_list_or_404
 
+
+@permission_classes([IsAuthenticated])
 @api_view(['GET'])
 def myprofile(request, username):
     user = get_object_or_404(User, username=username)
@@ -16,8 +18,11 @@ def myprofile(request, username):
         serializer = ProfileSerializer(user)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-    elif request.method == 'PUT':
-        serializer = ProfileSerializer(user,data=request.data)
+@permission_classes([IsAuthenticated])
+def update_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    if request.method == 'PUT':
+        serializer = ProfileSerializer(user,data=request.data, partial=True)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_200_OK)
