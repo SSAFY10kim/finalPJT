@@ -18,11 +18,16 @@ def myprofile(request, username):
         serializer = ProfileSerializer(user)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+
+@api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_profile(request, username):
     user = get_object_or_404(User, username=username)
-    if request.method == 'PUT':
-        serializer = ProfileSerializer(user,data=request.data, partial=True)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(data=serializer.data, status=status.HTTP_200_OK)
+    
+    serializer = ProfileSerializer(user, data=request.data, partial=True)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+
+    updated_data = serializer.data  # Modify this if needed
+
+    return Response(data=updated_data, status=status.HTTP_200_OK)
