@@ -94,7 +94,7 @@ export const useCounterStore = defineStore('counter', () => {
         router.push({ name: 'main' })
         
       })
-      .catch((err) => {
+      .catch((err) => { 
         console.log(err)
       })
   }

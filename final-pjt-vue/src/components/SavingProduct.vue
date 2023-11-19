@@ -2,6 +2,7 @@
     <div>
         <div class="product">
             <p>{{ saving.fin_prdt_nm }}</p>
+            <button>즐겨찾기</button>
             <p>{{ saving.kor_co_nm }}</p>
         </div>
         <div>

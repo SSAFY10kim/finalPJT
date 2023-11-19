@@ -182,4 +182,3 @@ REST_AUTH = {
 }
 
 ACCOUNT_ADAPTER = 'accounts.models.CustomAccountAdapter'
-

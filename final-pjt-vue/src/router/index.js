@@ -14,7 +14,7 @@ import LogInView from '@/views/LogInView.vue'
 import SavingView from '@/components/SavingView.vue'
 import DepositView from '@/components/DepositView.vue'
 // import CommentsList from '@/components/CommentsList.vue'
-
+import ProfileUpdateView from '@/views/ProfileUpdateView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,7 +47,10 @@ const router = createRouter({
     {
       path: '/profile/:name',
       name: 'profile',
-      component: ProfileView
+      component: ProfileView,
+      meta: {
+        reload:true
+      },
     },
     {
       path: '/community/articles',
@@ -88,7 +91,12 @@ const router = createRouter({
     //   path: '/comments',
     //   name: 'comments',
     //   component: CommentsList,
-    // }
+    // },
+    {
+      path: '/profile/:name/update',
+      name: 'profile_update',
+      component: ProfileUpdateView
+    }
 
   ]
 })
