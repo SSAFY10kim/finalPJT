@@ -11,6 +11,7 @@
       <p>구독 저축 {{ userdata.like_deposit }}</p>
       <p>구독 적금 {{ userdata.like_saving }}</p>
     </div>
+    <!-- <RouterLinks :to></RouterLinks> -->
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 import axios from 'axios';
 import { onMounted } from 'vue';
 import { useCounterStore } from '@/stores/counter';
+import { RouterLink, RouterView } from 'vue-router'
 
 const store = useCounterStore();
 
