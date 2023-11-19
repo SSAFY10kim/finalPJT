@@ -63,8 +63,9 @@ const updateProfile = function() {
     .then(function (response) {
         console.log('updated profile', response.data);
         console.log(username, realname, age, money, salary, gender, bank)
-        router.push({name: 'main'})
-        // router.push({ name: 'profile', params: {name: store.LoginName}})
+        // router.push({name: 'main'})
+        router.push({ name: 'profile', params: {name: store.LoginName}})
+        // router.replace({ name: 'profile', params: {name: store.LoginName}}) 
       })
     .catch(function (error) {
         console.log(123123123)

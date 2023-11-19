@@ -8,8 +8,8 @@
 
 <script setup>
 import MyProfile from '@/components/MyProfile.vue'
-import { RouterLink,RouterView } from 'vue-router'
-import { ref } from 'vue';
+import { RouterLink,RouterView, useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue';
 
 </script>
 
