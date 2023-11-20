@@ -5,6 +5,7 @@
             v-for="deposit in store.deposits"
             :key="deposit.id"
             :deposit="deposit"
+            :id="deposit.fin_prdt_cd"
         />
     </div>
 </template>

@@ -33,6 +33,8 @@ const store = useCounterStore();
 const userdata = store.userInfo
 const router = useRouter()
 
+
+
 const username = ref(userdata.username)
 const realname = ref(userdata.realname)
 // const password1 = ref(userdata.password1)

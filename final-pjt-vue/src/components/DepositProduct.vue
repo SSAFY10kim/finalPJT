@@ -2,6 +2,8 @@
     <div>
         <div class="product">
             <p>{{ deposit.fin_prdt_nm }}</p>
+            <button @click="likeDeposit(deposit.fin_prdt_cd)" v-if="checkLikes(deposit)">즐겨찾기 제거</button>
+            <button @click="likeDeposit(deposit.fin_prdt_cd)" v-else>즐겨찾기</button>
             <p>{{ deposit.kor_co_nm }}</p>
         </div>
         <div>
@@ -26,7 +28,11 @@
 
 <script setup>
 import DepositDetail from '@/components/DepositDetail.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+import { useCounterStore } from '@/stores/counter';
+
+const store = useCounterStore()
 
 defineProps({
     deposit: Object
@@ -45,6 +51,43 @@ const updateRealTimeValue = (deposit_option) => {
 
 const formatNumber = (number) => {
     return number.toLocaleString()
+}
+
+const buttonText = ref('즐겨찾기')
+
+const likeDeposit = function (temp) {
+
+// console.log(`${store.API_URL}/${temp}/likes/`)
+
+axios({
+    method: 'post',
+    url: `${store.API_URL}/api/v1/deposit/likes/${temp}/`,
+    headers: {
+    Authorization: `Token ${store.token}`
+}
+})
+    .then((res) => {
+        console.log(res)
+        if (res.data.is_like_deposit) {
+            alert('관심 목록에 추가되었습니다')
+            buttonText.value = '즐겨찾기 제거'
+        } else {
+            alert('관심 목록에서 제거되었습니다.')
+            buttonText.value = '즐겨찾기'
+        }
+        store.getUser()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+
+const checkLikes = function (deposit) {
+    if (store.userInfo.like_deposit.some(item => item.fin_prdt_cd === deposit.fin_prdt_cd)) {
+        return true
+    } else {
+        return false
+    }
 }
 
 </script>

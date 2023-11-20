@@ -21,4 +21,9 @@ urlpatterns = [
     path("save-saving/", views.save_saving),
     # 4. 전체 적음 상품 목록 및 옵션 출력 & 데이터 삽입
     path("saving/", views.saving),
+    # 5. 좋아요_saving
+    path('saving/likes/<str:saving_cd>/', views.saving_like),
+    # 6. 좋하요_deposit
+    path('deposit/likes/<str:deposit_cd>/', views.deposit_like),
+
 ]
