@@ -16,7 +16,9 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .serializers import *
 import requests
-from .models import Articles, Comments
+from .models import Articles, Comments, SavingProducts, DepositProducts
+from accounts.models import User
+from accounts.serializers import UserSerializer
 
 MONEY_API_KEY = settings.MONEY_API_KEY
 
@@ -259,3 +261,35 @@ def saving(request):
             product_data_list.append(product_data)
 
         return Response(product_data_list)
+    
+@api_view(['POST'])
+def saving_like(request, saving_cd):
+    if request.method == 'POST':
+        user = User.objects.get(username=request.user)
+        saving_product = get_object_or_404(SavingProducts, fin_prdt_cd=saving_cd)
+
+        if saving_product in user.like_saving.all():
+            user.like_saving.remove(saving_product)
+            is_like_saving = False
+        else:
+            user.like_saving.add(saving_product)
+            is_like_saving = True
+
+        serializer = UserSerializer(user)
+        return Response({'is_like_saving': is_like_saving})
+    
+@api_view(['POST'])
+def deposit_like(request, deposit_cd):
+        if request.method == 'POST':
+            user = User.objects.get(username=request.user)
+            deposit_product = get_object_or_404(DepositProducts, fin_prdt_cd=deposit_cd)
+
+            if deposit_product in user.like_deposit.all():
+                user.like_deposit.remove(deposit_product)
+                is_like_deposit = False
+            else:
+                user.like_deposit.add(deposit_product)
+                is_like_deposit = True
+
+            serializer = UserSerializer(user)
+            return Response({'is_like_deposit': is_like_deposit})

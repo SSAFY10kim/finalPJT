@@ -2,7 +2,8 @@
     <div>
         <div class="product">
             <p>{{ saving.fin_prdt_nm }}</p>
-            <button>즐겨찾기</button>
+            <button @click="likeSaving(saving.fin_prdt_cd)" v-if="checkLikes(saving)">즐겨찾기 제거</button>
+            <button @click="likeSaving(saving.fin_prdt_cd)" v-else>즐겨찾기</button>
             <p>{{ saving.kor_co_nm }}</p>
         </div>
         <div>
@@ -32,7 +33,11 @@
 
 <script setup>
 import SavingDetail from '@/components/SavingDetail.vue'
+import axios from 'axios';
 import { ref } from 'vue'
+import { useCounterStore } from '@/stores/counter';
+
+const store = useCounterStore()
 
 defineProps({
     saving: Object
@@ -64,6 +69,43 @@ const updateRealTimeValue = (saving_option) => {
 
 const formatNumber = (number) => {
     return number.toLocaleString()
+}
+
+const buttonText = ref('즐겨찾기')
+
+const likeSaving = function (temp) {
+
+    // console.log(`${store.API_URL}/${temp}/likes/`)
+
+    axios({
+        method: 'post',
+        url: `${store.API_URL}/api/v1/saving/likes/${temp}/`,
+        headers: {
+        Authorization: `Token ${store.token}`
+    }
+    })
+    .then((res) => {
+        console.log(res)
+        if (res.data.is_like_saving) {
+            alert('관심 목록에 추가되었습니다')
+            buttonText.value = '즐겨찾기 제거'
+        } else {
+            alert('관심 목록에서 제거되었습니다.')
+            buttonText.value = '즐겨찾기'
+        }
+        store.getUser()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+
+const checkLikes = function (saving) {
+    if (store.userInfo.like_saving.some(item => item.fin_prdt_cd === saving.fin_prdt_cd)) {
+        return true
+    } else {
+        return false
+    }
 }
 
 </script>

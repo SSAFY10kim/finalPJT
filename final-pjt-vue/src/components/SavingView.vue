@@ -5,6 +5,7 @@
             v-for="saving in store.savings"
             :key="saving.id"
             :saving="saving"
+            :id="saving.fin_prdt_cd"
         />
     </div>
 </template>
