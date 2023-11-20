@@ -15,19 +15,19 @@ import router from './router'
 // vuetify
 // npm i vuetify
 
-// import 'vuetify/styles'
-// import { createVuetify } from 'vuetify'
-// import * as components from 'vuetify/components'
-// import * as directives from 'vuetify/directives'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
 const app = createApp(App)
 const pinia = createPinia()
 
 // vuetify
-// const vuetify = createVuetify({
-//     components,
-//     directives,
-//   })
+const vuetify = createVuetify({
+    components,
+    directives,
+})
 
 pinia.use(piniaPluginPersistedstate)
 // app.use(createPinia())
@@ -38,6 +38,6 @@ app.use(router)
 // app.use(BootstrapVue3)
 
 // vuetify
-// app.use(vuetify)
+app.use(vuetify)
 
 app.mount('#app')
