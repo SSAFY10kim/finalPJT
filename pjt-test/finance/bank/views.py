@@ -71,7 +71,6 @@ def save_deposit(request):
 
     return Response({ 'message': 'okay' })
 
-
 @api_view(['GET', 'POST'])
 def deposit(request):
     if request.method == 'GET':
@@ -108,6 +107,27 @@ def deposit(request):
 
             # with open(json_file_path, 'w', encoding="utf-8") as file:
             #     file.write(json_data)
+
+            # current_directory = os.path.dirname(os.path.abspath(__file__))
+            # folder_path = os.path.join(current_directory, 'fixtures')
+            # json_file_path = os.path.join(folder_path, 'product_list.json')
+
+            # # Check if the file exists
+            # if os.path.exists(json_file_path):
+            #     # Read existing JSON data from the file
+            #     with open(json_file_path, 'r', encoding="utf-8") as file:
+            #         existing_data = json.load(file)
+
+            #     # Add the new data to the existing data
+            #     existing_data.extend(product_data_list)
+
+            #     # Write the updated JSON data back to the file
+            #     with open(json_file_path, 'w', encoding="utf-8") as file:
+            #         json.dump(existing_data, file, ensure_ascii=False, indent=2)
+            # else:
+            #     # If the file doesn't exist, create a new file and write the data
+            #     with open(json_file_path, 'w', encoding="utf-8") as file:
+            #         json.dump(product_data_list, file, ensure_ascii=False, indent=2)
 
         return Response(product_data_list)
 
@@ -191,15 +211,36 @@ def saving(request):
             # 최종 목록에 상품 데이터 추가
             product_data_list.append(product_data)
 
+            current_directory = os.path.dirname(os.path.abspath(__file__))
+
+            folder_path = os.path.join(current_directory, 'fixtures')
+
+            json_file_path = os.path.join(folder_path, 'saving_list.json')
+
+            json_data = json.dumps(product_data_list, ensure_ascii=False)
+
+            with open(json_file_path, 'w', encoding="utf-8") as file:
+                file.write(json_data)
+
             # current_directory = os.path.dirname(os.path.abspath(__file__))
-
             # folder_path = os.path.join(current_directory, 'fixtures')
+            # json_file_path = os.path.join(folder_path, 'product_list.json')
 
-            # json_file_path = os.path.join(folder_path, 'saving_list.json')
+            # # Check if the file exists
+            # if os.path.exists(json_file_path):
+            #     # Read existing JSON data from the file
+            #     with open(json_file_path, 'r', encoding="utf-8") as file:
+            #         existing_data = json.load(file)
 
-            # json_data = json.dumps(product_data_list, ensure_ascii=False)
+            #     # Add the new data to the existing data
+            #     existing_data.extend(product_data_list)
 
-            # with open(json_file_path, 'w', encoding="utf-8") as file:
-            #     file.write(json_data)
+            #     # Write the updated JSON data back to the file
+            #     with open(json_file_path, 'w', encoding="utf-8") as file:
+            #         json.dump(existing_data, file, ensure_ascii=False, indent=2)
+            # else:
+            #     # If the file doesn't exist, create a new file and write the data
+            #     with open(json_file_path, 'w', encoding="utf-8") as file:
+            #         json.dump(product_data_list, file, ensure_ascii=False, indent=2)
 
         return Response(product_data_list)

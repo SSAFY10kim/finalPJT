@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # 예금 리스트 load
 current_directory = os.path.dirname(os.path.abspath(__file__))
-product_json = open(current_directory + '/deposit_list.json', encoding='utf-8')
+product_json = open(current_directory + '/product_list.json', encoding='utf-8')
 product_list = json.load(product_json)
 
 # 유저 데이터 load
