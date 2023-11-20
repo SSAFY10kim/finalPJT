@@ -10,7 +10,8 @@ from rest_framework import status
 
 # permission Decorators
 from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,  IsAuthenticatedOrReadOnly
+from rest_framework import permissions
 
 from django.shortcuts import get_object_or_404, get_list_or_404
 
@@ -31,7 +32,8 @@ def money_data(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def article_list(request):
     if request.method == 'GET':
         articles = get_list_or_404(Articles)
@@ -46,8 +48,9 @@ def article_list(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
-@api_view(['GET', 'DELETE'])
-@permission_classes([IsAuthenticated])
+@api_view(['GET', 'DELETE', 'PUT'])
+# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def article_detail(request, article_pk):
     article = get_object_or_404(Articles, pk=article_pk)
 
@@ -60,14 +63,21 @@ def article_detail(request, article_pk):
         article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
+    elif request.method == 'PUT':
+        serializer = ArticleSerializer(article, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+    
 @api_view(['GET'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def comment_list(request):
     comments = get_list_or_404(Comments)
     serializers = CommentSerializer(comments, many=True)
     return Response(serializers.data)
 
 @api_view(['GET', 'DELETE', 'PUT'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def comment_detail(request, comment_pk):
     comment = Comments.objects.get(pk=comment_pk)
     if request.method == 'GET':

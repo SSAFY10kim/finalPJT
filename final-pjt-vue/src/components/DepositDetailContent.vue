@@ -1,45 +1,52 @@
 <template>
-    <div>
-        <div class="product">
-            <p>{{ deposit.fin_prdt_nm }}</p>
-            <button @click="likeDeposit(deposit.fin_prdt_cd)" v-if="checkLikes(deposit)">즐겨찾기 제거</button>
-            <button @click="likeDeposit(deposit.fin_prdt_cd)" v-else>즐겨찾기</button>
-            <p>{{ deposit.kor_co_nm }}</p>
-        </div>
-        <div>
-            <label for="customAmount">예금 금액 :</label>
-            <input v-model="customAmount" type="number" id="customAmount" />
-        </div>
-        <div class="deposit-options-container">
-            <DepositDetail
-                v-for="deposit_option in deposit.deposit_options"
-                :key="deposit_option.id"
-                :deposit_option="deposit_option"
-                @click="updateRealTimeValue(deposit_option)"
-                class="deposit-option"
-            />
-        </div>
-        <div class="real-time-value">
-            <p>{{ customAmount }}만원 예금하면 총 세후 이자 : {{ formatNumber(realTimeValue) }}원</p>
-        </div>
-        <RouterLink :to="{name: 'deposit_detail', params: {deposit_id: deposit.fin_prdt_cd}}">자세히보기</RouterLink>
-        <!-- <button @click=test(deposit)>왜난리침?</button> -->
-        <hr>
-    </div>
+  <div>
+    <h1>예금 상세페이지</h1>
+      <div class="product">
+          <p>{{ deposit.fin_prdt_nm }}</p>
+          <button @click="likeDeposit(deposit.fin_prdt_cd)" v-if="checkLikes(deposit)">즐겨찾기 제거</button>
+          <button @click="likeDeposit(deposit.fin_prdt_cd)" v-else>즐겨찾기</button>
+          <p>{{ deposit.kor_co_nm }}</p>
+      </div>
+      <div>
+          <label for="customAmount">예금 금액 :</label>
+          <input v-model="customAmount" type="number" id="customAmount" />
+      </div>
+      <div class="deposit-options-container">
+          <DepositDetail
+              v-for="deposit_option in deposit.deposit_options"
+              :key="deposit_option.id"
+              :deposit_option="deposit_option"
+              @click="updateRealTimeValue(deposit_option)"
+              class="deposit-option"
+          />
+      </div>
+      <div class="real-time-value">
+          <p>{{ customAmount }}만원 예금하면 총 세후 이자 : {{ formatNumber(realTimeValue) }}원</p>
+      </div>
+      <hr>
+      <h2>상세정보</h2>
+      <p>{{ deposit.etc_note }}</p>
+      <p>{{ deposit.kor_co_nm }}</p>
+      <p>{{ deposit.spcl_cnd }}</p>
+  </div>
+  <RouterView />
 </template>
 
 <script setup>
+import { RouterView, useRoute } from 'vue-router';
+import { useCounterStore } from '@/stores/counter';
 import DepositDetail from '@/components/DepositDetail.vue'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import { useCounterStore } from '@/stores/counter';
-import { RouterLink, RouterView } from 'vue-router'
 
+
+const route = useRoute()
 const store = useCounterStore()
 
-defineProps({
-    deposit: Object
-})
+const depositCd = route.params.deposit_id
+const deposit = store.deposits.find(deposit => deposit.fin_prdt_cd === depositCd);
+
+console.log(deposit)
 
 const realTimeValue = ref('')
 const customAmount = ref(10000000);
@@ -92,15 +99,6 @@ const checkLikes = function (deposit) {
         return false
     }
 }
-
-const goDetail = (data) => {
-    router
-}
-
-const test = (temp) => {
-    console.log(temp)
-}
-
 </script>
 
 <style scoped>

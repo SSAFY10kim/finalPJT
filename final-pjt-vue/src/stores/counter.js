@@ -25,9 +25,9 @@ export const useCounterStore = defineStore('counter', () => {
     axios({
       method: 'get',
       url: `${API_URL}/api/v1/articles/`,
-      headers: {
-        Authorization: `Token ${token.value}`
-      }
+      // headers: {
+      //   Authorization: `Token ${token.value}`
+      // }
     })
       .then((res) =>{
         console.log(res)
@@ -36,6 +36,7 @@ export const useCounterStore = defineStore('counter', () => {
       .catch((err) => {
         articles.value = []
         console.log(err)
+        console.log(111)
       })
   }
   
@@ -51,6 +52,7 @@ export const useCounterStore = defineStore('counter', () => {
       comments.value = res.data
     }).catch((err) => {
       console.log(err)
+      comments.value = []
     })
 
   }
