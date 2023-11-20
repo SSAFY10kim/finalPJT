@@ -3,7 +3,7 @@
     <template v-for="comment in store.comments" :key="comment.id">
       <li v-if="comment.article === Number(props.articleId)">
         <span>{{ comment.user_username }}</span> : <span>{{ comment.content }}</span>
-        <button @click="confirmDelete(comment.id)" class="delete-button">삭제</button>
+        <button @click="confirmDelete(comment.id)" class="delete-button" v-if="store.isLogin">삭제</button>
       </li>
     </template>
   </div>

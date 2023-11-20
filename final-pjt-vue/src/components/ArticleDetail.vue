@@ -8,25 +8,26 @@
     <p>작성일 : {{ article.created_at }}</p>
     <p>수정일 : {{ article.updated_at }}</p>
     <p>{{ article.user_username }}</p>
+    <RouterLink :to="{name: 'article_update', params: {id: article.id}}" v-if="store.isLogin">게시글 수정</RouterLink>
     </div>
     <p v-if="article">댓글 갯수 :{{ article.comment_count }}</p>
-    <div>
+    <div v-if="store.isLogin">
         <form @submit.prevent="createComment">
             <input type="text" v-model="comment_content">
             <input type="submit">
         </form>
     </div>
-    <button @click="confirmDelete(route.params.id)">삭제
-    </button>
+    <button @click="confirmDelete(route.params.id)" v-if="store.isLogin">삭제</button>
     <CommentsList :article-id="route.params.id" @commentDeleted="refreshArticle()"/>
 </div>
+
 </template>
 
 <script setup>
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 import { useCounterStore } from '@/stores/counter'
-import { routerKey, useRoute, useRouter } from 'vue-router'
+import { routerKey, useRoute, useRouter, RouterLink } from 'vue-router'
 import { onBeforeRouteLeave } from 'vue-router'
 import CommentsList from '@/components/CommentsList.vue'
 
@@ -40,9 +41,9 @@ onMounted(() => {
 axios({
     method: 'get',
     url: `${store.API_URL}/api/v1/articles/${route.params.id}/`,
-    headers: {
-        Authorization: `Token ${store.token}`
-      }
+    // headers: {
+    //     Authorization: `Token ${store.token}`
+    //   }
 })
     .then((res) => {
     console.log(res.data)

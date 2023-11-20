@@ -27,6 +27,7 @@
             <p v-show="save_type==='정액적립식'">월 {{ customAmount }}만원씩 {{ month }}개월 간 적금하면 총 세후 이자 : {{ formatNumber(realTimeValue) }}원</p>
             <p v-show="save_type==='자유적립식'">{{ customAmount }}만원 적금시 만기일 까지 총 세후 이자 : {{ formatNumber(realTimeValue) }}원</p>
         </div>
+        <RouterLink :to="{name: 'saving_detail', params: {saving_id: saving.fin_prdt_cd}}">자세히보기</RouterLink>
         <hr>
     </div>
 </template>
