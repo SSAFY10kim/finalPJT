@@ -1,15 +1,29 @@
 <template>
-  <div>
-    <h1>예금 상세페이지</h1>
+  <div class="detailpage">
       <div class="product">
-          <p>{{ deposit.fin_prdt_nm }}</p>
-          <button @click="likeDeposit(deposit.fin_prdt_cd)" v-if="checkLikes(deposit)">즐겨찾기 제거</button>
-          <button @click="likeDeposit(deposit.fin_prdt_cd)" v-else>즐겨찾기</button>
-          <p>{{ deposit.kor_co_nm }}</p>
+          <img :src="`/bank/${deposit.kor_co_nm}.png`" alt="은행 로고" style="height: 100px; width: 300px;"><br>
+          <p class="p1">{{ deposit.kor_co_nm }}</p>
+          <p class="p1">{{ deposit.fin_prdt_nm }}</p>
+          <p style="display: inline-block;" class="like">관심 상품 </p>
+          <button @click="likeDeposit(deposit.fin_prdt_cd)" v-if="checkLikes(deposit)"><i class="bi bi-star-fill" style="font-size: 30px;"></i></button>
+          <button @click="likeDeposit(deposit.fin_prdt_cd)" v-else style="font-size: 30px;"><i class="bi bi-star"></i></button>
       </div>
+      <div class="depositcomponent">
       <div>
-          <label for="customAmount">예금 금액 :</label>
-          <input v-model="customAmount" type="number" id="customAmount" />
+          <label for="customAmount"></label>
+          <div class="d-flex justify-content-center">
+              <b-input-group size="lg" style="width: 60%;">
+              <b-input-group-prepend>
+                  <b-input-group-text>적립 금액</b-input-group-text>
+              </b-input-group-prepend>
+
+              <b-form-input v-model="customAmount"></b-form-input>
+
+              <b-input-group-append >
+                  <b-input-group-text style="width: 85px;">원 (₩)</b-input-group-text>
+              </b-input-group-append>
+              </b-input-group>
+          </div>
       </div>
       <div class="deposit-options-container">
           <DepositDetail
@@ -18,16 +32,20 @@
               :deposit_option="deposit_option"
               @click="updateRealTimeValue(deposit_option)"
               class="deposit-option"
+              :class="{ isHighlighted: deposit_option.highlighted }"
+              @mouseover="highlightOption(deposit_option)"
+              @mouseleave="resetPosition(deposit_option)"
           />
       </div>
-      <div class="real-time-value">
-          <p>{{ customAmount }}만원 예금하면 총 세후 이자 : {{ formatNumber(realTimeValue) }}원</p>
+      <div class="real-time-value d-flex justify-content-center">
+          <p>{{ customAmount }}원 예금하면 총 세후 이자 : {{ formatNumber(realTimeValue) }}원</p>
+      </div>
       </div>
       <hr>
       <h2>상세정보</h2>
-      <p>{{ deposit.etc_note }}</p>
       <p>{{ deposit.kor_co_nm }}</p>
-      <p>{{ deposit.spcl_cnd }}</p>
+      <p v-html="deposit.spcl_cnd.replace(/\n/g, '<br>')"></p>
+      <p v-html="deposit.etc_note.replace(/\n/g, '<br>')"></p>
   </div>
   <RouterView />
 </template>
@@ -99,22 +117,68 @@ const checkLikes = function (deposit) {
         return false
     }
 }
+
+const highlightOption = (deposit_option) => {
+  deposit_option.highlighted = true;
+};
+
+const resetPosition = (deposit_option) => {
+    deposit_option.highlighted = false;
+};
+
 </script>
 
 <style scoped>
-.product {
-    font-size: 25px;
+.detailpage {
+  width: 85%;
+  margin: 0 auto;
+}
+.products > span{
+    font-size: 24px;
+    margin: 40px
+}
+
+.product > .p1 {
+    font-size: 20px;
+    margin: 0px 40px;
 }
 .deposit-options-container {
     display: flex;
+    gap: 40px;
+    margin: 0 10%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .deposit-option {
-    border: solid 1px blue;
+    background-color: #E6E6FA;
+    border-radius: 8%;
     margin-right: 10px;
+    transition: transform 0.5s, font-weight 0.5s, width 0.5s, height 0.5s, font-size 0.5s;
 }
 
 .real-time-value {
     margin-top: 10px;
+}
+
+.deposit-option.isHighlighted {
+    transform: translateY(-5px); /* 마우스 호버 시 변경할 스타일 지정 */
+    /* font-weight: bold; */
+    /* width: 150px; 마우스 호버 시 변경할 너비 지정 */
+    /* height: 200px; 마우스 호버 시 변경할 높이 지정 */
+    /* font-size: 30px; 마우스 호버 시 변경할 폰트 크기 지정 */
+    background-color: #8AC3E5;
+    color: white;  
+}
+
+#customAmount {
+    border: 1px solid black;
+}
+
+.like {
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 40px
 }
 </style>

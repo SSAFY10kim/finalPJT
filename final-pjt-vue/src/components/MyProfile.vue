@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="profilepage">
+    <h1>{{ userdata.realname }}님의 프로필</h1>
       <div class="userinfo">
         <p>아이디 {{ userdata.username }}</p>
         <p>이름 {{ userdata.realname }}</p>
@@ -10,24 +10,29 @@
         <p>연봉 {{ userdata.salary }}</p>
         <p>주거래은행 {{ userdata.bank }}</p>
         <hr>
+        <div class="depositdiv">
         <p>관심 예금</p>
-        <ul class="link-list" v-if="userdata.like_deposit.length > 0">
+        <div class="link-list" v-if="userdata.like_deposit.length > 0">
           <router-link v-for=" deposit in userdata.like_deposit" :key="deposit.fin_prdt_nm" :to="{name: 'deposit_detail', params: {deposit_id : deposit.fin_prdt_cd} }" class="link-item">
             {{ deposit.fin_prdt_nm }}
           </router-link>
-        </ul>
+        </div>
         <RouterLink v-else :to="{name: 'deposit'}">관심 예금 목록을 추가해주세요</RouterLink>
+        </div>
+        <div class="savingdiv">
         <p>관심 적금</p>
-        <ul class="link-list" v-if="userdata.like_saving.length > 0">
+        <div class="link-list" v-if="userdata.like_saving.length > 0">
           <router-link v-for="saving in userdata.like_saving" :key="saving.fin_prdt_nm" :to="{name: 'saving_detail', params: {saving_id : saving.fin_prdt_cd}}" class="link-item">
             {{ saving.fin_prdt_nm }}
           </router-link>
-        </ul>
+        </div>
         <RouterLink v-else :to="{name: 'saving'}">관심 적금 목록을 추가해주세요</RouterLink>
+        </div>
       </div>
       <hr>
-      <!-- <p> {{ userdata }} </p> -->
-    <RouterLink :to="{name: 'profile_update', params: {name: store.LoginName}}">프로필 수정</RouterLink>
+    <div class="profileupdate">
+      <button class="btn btn-outline-secondary"><RouterLink :to="{name: 'profile_update', params: {name: store.LoginName}}">프로필 수정</RouterLink></button>
+    </div>
   </div>
 </template>
 
@@ -72,5 +77,30 @@ watch(userdata, () => {
 <style scoped>
 .link-item {
   display: block;
+}
+.profilepage {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.profilepage h1 {
+  text-align: center;
+}
+
+.profileupdate {
+  text-align: center;
+}
+
+.depositdiv, .savingdiv {
+  text-align: center;
+}
+
+.depositdiv a, .savingdiv a {
+  text-decoration: none;
+}
+
+.profileupdate a {
+  color: black;
+  text-decoration: none;
 }
 </style>

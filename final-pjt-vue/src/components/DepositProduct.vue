@@ -167,10 +167,12 @@ const resetPosition = (deposit_option) => {
 
 .deposit-option.isHighlighted {
     transform: translateY(-5px); /* 마우스 호버 시 변경할 스타일 지정 */
-    font-weight: bold;
-    width: 150px; /* 마우스 호버 시 변경할 너비 지정 */
-    height: 200px; /* 마우스 호버 시 변경할 높이 지정 */
-    font-size: 30px; /* 마우스 호버 시 변경할 폰트 크기 지정 */
+    /* font-weight: bold; */
+    /* width: 150px; 마우스 호버 시 변경할 너비 지정 */
+    /* height: 200px; 마우스 호버 시 변경할 높이 지정 */
+    /* font-size: 30px; 마우스 호버 시 변경할 폰트 크기 지정 */
+    background-color: #8AC3E5;
+    color: white;  
 }
 
 #customAmount {
