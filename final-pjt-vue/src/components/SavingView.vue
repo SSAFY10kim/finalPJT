@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>Saving List</h1>
+    <div class="savingpage">
+        <h1>적금 상품 리스트</h1>
         <SavingProduct
             v-for="saving in store.savings"
             :key="saving.id"
@@ -24,5 +24,12 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.savingpage {
+    width: 85%;
+    margin: 0 auto;
+}
 
+h1 {
+    text-align: center;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>Deposit List</h1>
+    <div class="depositpage">
+        <h1>예금 상품 리스트</h1>
         <DepositProduct
             v-for="deposit in store.deposits"
             :key="deposit.id"
@@ -24,5 +24,12 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.depositpage {
+    width: 85%;
+    margin: 0 auto;
+}
 
+h1 {
+    text-align: center;
+}
 </style>
