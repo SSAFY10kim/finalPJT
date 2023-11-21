@@ -30,9 +30,9 @@
       </div>
       <hr>
       <h2>상세정보</h2>
-      <p>{{ saving.etc_note }}</p>
       <p>{{ saving.kor_co_nm }}</p>
-      <p>{{ saving.spcl_cnd }}</p>
+      <p v-html="saving.spcl_cnd.replace(/\n/g, '<br>')"></p>
+      <p v-html="saving.etc_note.replace(/\n/g, '<br>')"></p>
   </div>
 </template>
 
@@ -138,4 +138,5 @@ const checkLikes = function (saving) {
 .real-time-value {
   margin-top: 10px;
 }
+
 </style>
