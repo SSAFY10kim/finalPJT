@@ -25,5 +25,6 @@ urlpatterns = [
     path('saving/likes/<str:saving_cd>/', views.saving_like),
     # 6. 좋하요_deposit
     path('deposit/likes/<str:deposit_cd>/', views.deposit_like),
-
+    # 네이버 뉴스
+    path('navernews/', views.navernews),
 ]

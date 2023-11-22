@@ -22,6 +22,8 @@ from accounts.models import User
 from accounts.serializers import UserSerializer
 
 MONEY_API_KEY = settings.MONEY_API_KEY
+CLIENT_ID = settings.CLIENT_ID
+CLIENT_SECRET = settings.CLIENT_SECRET
 
 @api_view(['GET'])
 def money_data(request):
@@ -29,6 +31,46 @@ def money_data(request):
 
     data = requests.get(url)
     return Response(data.json())
+
+@api_view(['GET'])
+def navernews(request):
+    # Naver API 요청에 필요한 정보
+    naver_client_id = CLIENT_ID
+    naver_client_secret = CLIENT_SECRET
+    search_query = '경제'
+    display_count = 10
+    start_page = 1
+    sort_option = 'sim'
+
+    # Naver API 요청 URL
+    search_url = 'https://openapi.naver.com/v1/search/news.json'
+
+    # Naver API 요청 헤더 설정
+    headers = {
+        'X-Naver-Client-Id': naver_client_id,
+        'X-Naver-Client-Secret': naver_client_secret,
+    }
+
+    # Naver API 요청 파라미터 설정
+    params = {
+        'query': search_query,
+        'display': display_count,
+        'start': start_page,
+        'sort': sort_option,
+    }
+
+    try:
+        # Naver API에 GET 요청 보내기
+        response = requests.get(search_url, headers=headers, params=params)
+        response.raise_for_status()  # HTTP 오류 발생 시 예외 처리
+
+        # Naver API로부터 받은 JSON 데이터를 파싱하여 JsonResponse로 반환
+        data = response.json()
+        return Response(data)
+    except requests.exceptions.RequestException as e:
+        # 요청 중에 오류가 발생한 경우 예외 처리
+        return Response({'error': str(e)}, status=500)
+
 
 
 @api_view(['GET', 'POST'])
