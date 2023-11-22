@@ -5,9 +5,10 @@ from django.conf import settings
 from accounts.serializers import CustomRegisterSerializer
 
 class ArticleListSerializer(serializers.ModelSerializer):
+    user_username = serializers.CharField(source='user.username', read_only=True)
     class Meta:
         model = Articles
-        fields = ('id', 'title', 'content')
+        fields = ('id', 'title', 'content', 'user_username',)
 
 
 class CommentSerializer(serializers.ModelSerializer):

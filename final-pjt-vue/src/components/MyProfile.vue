@@ -1,14 +1,38 @@
 <template>
   <div class="profilepage">
     <h1>{{ userdata.realname }}님의 프로필</h1>
-      <div class="userinfo">
-        <p>아이디 {{ userdata.username }}</p>
-        <p>이름 {{ userdata.realname }}</p>
-        <p>나이 {{ userdata.age }}</p>
-        <p>성별 {{ userdata.gender }}</p>
-        <p>자산 {{ userdata.money }}</p>
-        <p>연봉 {{ userdata.salary }}</p>
-        <p>주거래은행 {{ userdata.bank }}</p>
+    <div class="userinfo">
+      <table class="userinfo">
+        <tr>
+          <td style="text-align: center;">아이디</td>
+          <td style="text-align: center;">{{ userdata.username }}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">이름</td>
+          <td style="text-align: center;">{{ userdata.realname }}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">나이</td>
+          <td style="text-align: center;">{{ userdata.age }}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">성별</td>
+          <td style="text-align: center;">{{ userdata.gender }}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">자산</td>
+          <td style="text-align: center;">{{ userdata.money }}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">연봉</td>
+          <td style="text-align: center;">{{ userdata.salary }}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">주거래은행</td>
+          <td style="text-align: center;">{{ userdata.bank }}</td>
+        </tr>
+      </table>
+    </div>
         <hr>
         <div class="depositdiv">
         <p>관심 예금</p>
@@ -113,5 +137,20 @@ watch(userdata, () => {
 .profileupdate a {
   color: black;
   text-decoration: none;
+}
+
+.table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.userinfo {
+  margin: 40px auto;
 }
 </style>

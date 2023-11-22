@@ -1,27 +1,47 @@
 <template>
-  <div>
-    <h1>프로필 수정</h1>
-    <form @submit.prevent="updateProfile">
-        <label for="username">아이디 : </label>
-        <input type="text" id="username" v-model.trim="username"><br>
-        <label for="realname">이름 : </label>
-        <input type="text" id="realname" v-model.trim="realname"><br>
-        <label for="age">나이 : </label>
-        <input type="number" id="age" v-model.trim="age"><br>
-        <label for="money">현재 재산 : </label>
-        <input type="number" id="money" v-model.trim="money"><br>
-        <label for="salary">연봉 : </label>
-        <input type="number" id="salary" v-model.trim="salary"><br>
-        <label for="gender">성별 : </label>
-        <input type="text" id="gender" v-model.trim="gender"><br>
-        <label for="bank">주거래 은행 : </label>
-        <select id="bank" v-model="bank">
-            <option v-for="b in banks" :value="b">{{ b }}</option>
-        </select>
-        <input type="submit">
-    </form>
+  <div class="text-center" id="signuppage">
+    <div id="loginBoxTitle">Profile Update</div>
+      <form @submit.prevent="updateProfile" style="width: 50%;">
+          <div class="form-group">
+            <span for="exampleInputEmail1" class="form-label mt-4">아이디</span>
+            <input type="text" class="form-control" id="exampleInputEmail1" v-model.trim="username" v-bind:disabled="true">
+          </div>
+            <div class="form-group">
+              <span for="exampleInputEmail1" class="form-label mt-4">이름</span>
+                <input type="text" class="form-control" id="exampleInputEmail1" v-model.trim="realname">
+            </div>
+            <div class="form-group">
+              <span for="exampleInputEmail1" class="form-label mt-4">나이</span>
+                <input type="number" class="form-control" id="exampleInputEmail1"  v-model.trim="age">
+            </div>
+            <div class="form-group">
+              <span for="exampleSelect1" class="form-label mt-4">성별</span>
+              <select class="form-select" id="exampleSelect1"  v-model.trim="gender">
+                <option>남자</option>
+                <option>여자</option>
+              </select> 
+            </div>
+            <div class="form-group">
+              <span for="exampleInputEmail1" class="form-label mt-4">연봉</span>
+                <input type="number" class="form-control" id="exampleInputEmail1"  v-model.trim="salary">
+            </div>   
+            <div class="form-group">
+              <span for="exampleInputEmail1" class="form-label mt-4">재산</span>
+                <input type="number" class="form-control" id="exampleInputEmail1"  v-model.trim="money">
+            </div>              
+            <div class="form-group">
+              <span for="exampleSelect1" class="form-label mt-4">주 거래 은행</span>
+              <select class="form-select" id="exampleSelect1" v-model="bank">
+                <option v-for="b in banks" :value="b">{{ b }}</option>
+              </select>
+            </div>
+          <div class="d-grid gap-2" style="margin-top: 20px; background-color: #E6E6FA; border: none;">
+              <button class="btn btn-primary btn-lg" type="submit" style="background-color: #E6E6FA; border: none;">수정하기</button>
+          </div>
+  
+        </form>
   </div>
-</template>
+  </template>
 
 <script setup>
 import axios from 'axios';
@@ -82,5 +102,26 @@ const banks = ["은행선택","국민은행","우리은행","신한은행","KEB�
 </script>
 
 <style scoped>
+#signuppage {
+  width: 85%;
+  margin: 0 auto;
+}
 
+form {
+  margin: 0 auto;
+  width: 50%;
+  margin-bottom: 100px;
+}
+
+#loginBoxTitle {
+  color:#000000;
+  font-weight: bold;
+  font-size: 32px;
+  text-transform: uppercase;
+  padding: 5px;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #270a09, #8ca6ce);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 </style>
