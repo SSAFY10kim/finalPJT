@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="recommended">
-        <p>추천 상품 : </p>
+        <p>추천 상품 </p>
         <div class="link-list" v-if="recommendedList.deposit.length > 0">
           <router-link v-for=" deposit in recommendedList.deposit" :key="deposit.fin_prdt_nm" :to="{name: 'deposit_detail', params: {deposit_id : deposit.fin_prdt_cd} }" class="link-item">
             {{ deposit.fin_prdt_nm }}
@@ -157,11 +157,12 @@ const divideRecommended = function (deposits, savings, recommended, recommendedL
   text-align: center;
 }
 
-.depositdiv, .savingdiv {
+.depositdiv, .savingdiv, .recommended {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.depositdiv a, .savingdiv a {
+.depositdiv a, .savingdiv a, .recommended a {
   text-decoration: none;
 }
 

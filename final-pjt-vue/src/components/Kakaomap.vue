@@ -1,34 +1,35 @@
 <template>
     <div class="map_wrap">
-      <h1>은행 검색</h1>
-      <div>
-        <div class="search_option">
-            <span>
-              <label for="sido1">시/도</label>
-              <select v-model="selectLocal1">
-                <option v-for="local1 in localType1" :value="local1">{{ local1 }}</option>            
-              </select>
-            </span>
-            <span>
-              <label for="gugun1">구/군</label>
-              <select v-model="selectLocal2">
-                <option v-for="local2 in localType2" :value="local2">{{ local2 }}</option>            
-              </select>
-            </span>
-            <span>
-              <label for="dong1">동</label>
-              <select v-model="selectLocal3">
-                <option v-for="local3 in localType3" :value="local3">{{ local3 }}</option>            
-              </select>
-            </span>
-            <span>
-              <label for="bank1">검색은행</label>
-              <select v-model="selectedBank">
-                <option v-for="bank in banks" :key="bank">{{ bank }}</option>
-              </select>
-            </span>
-            <button @click="searchPlaces">검색하기</button>
-          </div>
+      <h1>근처 은행 검색</h1>
+
+  <div>
+    <div class="search_option">
+      <span>
+        <label for="sido1">시/도</label>
+        <select v-model="selectLocal1">
+          <option v-for="local1 in localType1" :value="local1">{{ local1 }}</option>            
+        </select>
+      </span>
+      <span>
+        <label for="gugun1">구/군</label>
+        <select v-model="selectLocal2">
+          <option v-for="local2 in localType2" :value="local2">{{ local2 }}</option>            
+        </select>
+      </span>
+      <span>
+        <label for="dong1">동</label>
+        <select v-model="selectLocal3">
+          <option v-for="local3 in localType3" :value="local3">{{ local3 }}</option>            
+        </select>
+      </span>
+      <span>
+        <label for="bank1">검색은행</label>
+        <select v-model="selectedBank">
+          <option v-for="bank in banks" :key="bank">{{ bank }}</option>
+        </select>
+      </span>
+      <button @click="searchPlaces">검색하기</button>
+    </div>
       </div>
       <div id="map" style="width:90%; height:700px; position:relative;overflow:hidden;"></div>
       <div id="menu_wrap" class="bg_white">
@@ -42,8 +43,8 @@
 <style scoped>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:20%;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+.map_wrap {position:relative;width:100%;height:100%;}
+#menu_wrap {position:absolute;top:18%;left:5%;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -83,8 +84,9 @@
   font-size: 30px;
 }
 
-.search_option span {
+.search_option span label {
   margin-right: 10px;
+  font-size: 22px;
 }
 
 .map_wrap {
@@ -95,6 +97,11 @@
   width: 85%;
   height: 100%;
   margin: 0 auto;
+}
+
+.map_wrap h1 {
+  font-size: 30px;
+  margin: 30px auto;
 }
 
 .search_container {
@@ -110,13 +117,22 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  border: 1px solid gainsboro;
+  padding: 5px 30px;
 }
 
-.search_option span {
+.search_option span,
+.search_option select,
+.search_option option {
   display: flex;
   align-items: center;
   margin: 0 5px;
 }
+
+.search_option button {
+  font-size: 15px;
+}
+
 
 label {
   margin-right: 5px;
@@ -135,6 +151,43 @@ button {
   color: white;
   cursor: pointer;
 }
+
+h1 {
+      font-size: 28px;
+      color: #333;
+    }
+
+    .search_option {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    select {
+      font-size: 14px;
+      padding: 8px;
+      width: 150px;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px;
+      background-color: #E6E6FA;
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #E6E6FA;
+    }
 </style>
   
 <script setup>

@@ -1,17 +1,27 @@
 <template>
-  <div>
-    <h1>게시글 수정</h1>
-    <form @submit.prevent="updateArticle">
-      <div>
-        <label for="title">제목:</label>
-        <input type="text" v-model.trim="title" id="title">
+  <div class="text-center">
+    <!--  html 전체 영역을 지정하는 container -->
+    <div id="container">
+      <!--  create 폼 영역을 -->
+      <div id="createBox">
+      
+        <!-- 로그인 페이지 타이틀 -->
+        <div id="createBoxTitle">게시글 작성</div>
+        <!-- 아이디, 비번, 버튼 박스 -->
+        <div id="inputBox">
+          <b-input-group prepend="제목" class="mt-3">
+            <b-form-input v-model="title"></b-form-input>
+          </b-input-group>
+          <b-input-group prepend="내용" class="mt-3">
+            <b-form-textarea v-model="content"></b-form-textarea>
+          </b-input-group>
+          <div class="button-login-box" >
+            <button type="button" class="btn btn-primary" style="width:30%; height: 50px; background-color: #E6E6FA; border: none;" @click="updateArticle">작성</button>
+          </div>
+        </div>
+        
       </div>
-      <div>
-        <label for="content">내용:</label>
-        <textarea v-model.trim="content" id="content"></textarea>
-      </div>
-      <input type="submit">
-    </form>
+    </div>
   </div>
 </template>
   
@@ -70,7 +80,42 @@
     
   </script>
   
-  <style>
+  <style scoped>
+  #container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  #createBox {
+    width: 70%;
+    text-align: center;
+    background-color: #ffffff;
+  }
+  
+  #createBoxTitle {
+    color:#000000;
+    font-weight: bold;
+    font-size: 32px;
+    text-transform: uppercase;
+    padding: 5px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #270a09, #8ca6ce);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #inputBox {
+    margin: 10px;
+  }
+  
+  #inputBox > div.button-login-box > button {
+    margin-top: 30px;
+    padding: 3px 5px;
+    width: 30px;
+  }
   
   </style>
+  
   

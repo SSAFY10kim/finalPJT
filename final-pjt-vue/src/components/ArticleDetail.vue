@@ -1,23 +1,46 @@
 <template>
-<div>
-    <h1>Detail</h1>
-    <div v-if="article">
-    <p>{{ article.id }}</p>
-    <p>제목 : {{ article.title }}</p>
-    <p>내용 : {{ article.content }}</p>
-    <p>작성일 : {{ article.created_at }}</p>
-    <p>수정일 : {{ article.updated_at }}</p>
-    <p>{{ article.user_username }}</p>
-    <RouterLink :to="{name: 'article_update', params: {id: article.id}}" v-if="store.isLogin">게시글 수정</RouterLink>
+<div class="articledetail">
+  <div v-if="article">
+    <div style="margin-top: 20px;">
+    <span style="font-size: 30px; margin-right: 20px;">{{ article.id }}.</span>
+    <span style="font-size: 30px">{{ article.title }}</span>
     </div>
-    <p v-if="article">댓글 갯수 :{{ article.comment_count }}</p>
+    <!-- <p>제목 : {{ article.title }}</p> -->
+    <div class="row">
+      <b-card-group deck class="mb-3">
+        <b-card col md="6" border-variant="dark" header="내용" align="left">
+          <b-card-text>{{ article.content }}</b-card-text>
+        </b-card>
+        <!-- Add more cards if needed -->
+      </b-card-group>
+      <hr>
+    </div>
+    <!-- <p>작성일 : {{ article.created_at }}</p> -->
+    <p class="float-right">작성일 : {{ formattedDate }}</p>
+    <p>작성자 : {{ article.user_username }}</p>
+    <div>
+    <button class="btn btn-outline-secondary float-left">
+      <RouterLink :to="{name: 'article_update', params: {id: article.id}}" v-if="store.isLogin" style="text-decoration: none; color: black;">게시글 수정</RouterLink>
+    </button>
+    </div>
+    <button @click="confirmDelete(route.params.id)" v-if="store.isLogin" class="btn btn-outline-danger float-right">삭제</button>
+    </div><br><br><hr>
     <div v-if="store.isLogin">
-        <form @submit.prevent="createComment">
-            <input type="text" v-model="comment_content">
-            <input type="submit">
-        </form>
+      <div>
+        <b-input-group size="lg" style="width: 100%;">
+          <b-input-group-prepend>
+            <b-input-group-text>댓글</b-input-group-text>
+          </b-input-group-prepend>
+          
+          <b-form-input v-model="comment_content"></b-form-input>
+          
+          <b-input-group-append >
+            <b-button variant="outline-success" @click="createComment">등록</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </div>
     </div>
-    <button @click="confirmDelete(route.params.id)" v-if="store.isLogin">삭제</button>
+    <p v-if="article" style="font-size: 20px; margin-top: 20px;">댓글 갯수 :  {{ article.comment_count }}개</p>
     <CommentsList :article-id="route.params.id" @commentDeleted="refreshArticle()"/>
 </div>
 
@@ -36,6 +59,7 @@ const route = useRoute()
 const router = useRouter()
 const article = ref(null)
 const comment_content = ref(null) 
+const formattedDate = ref(null)
 
 onMounted(() => {
 axios({
@@ -48,6 +72,15 @@ axios({
     .then((res) => {
     console.log(res.data)
     article.value = res.data
+    
+    const date = new Date(article.value.updated_at);
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+
+      formattedDate.value = `${year}-${month}-${day} ${hours}:${minutes}`;
     })
     .catch((err) => {
     console.log(err)
@@ -139,8 +172,13 @@ const refreshArticle = function() {
 defineProps({
   comment_list : String,
 })
+
 </script>
 
-<style>
+<style scoped>
+.articledetail {
+  width: 85%;
+  margin: 0 auto;
+}
 
 </style>
