@@ -55,15 +55,21 @@
       </div>
       <div class="recommended">
         <p>추천 상품 : </p>
-        <ul v-for="recommended_product in recommended">
-          {{ recommended_product }}
-        </ul>
+        <div class="link-list" v-if="recommendedList.deposit.length > 0">
+          <router-link v-for=" deposit in recommendedList.deposit" :key="deposit.fin_prdt_nm" :to="{name: 'deposit_detail', params: {deposit_id : deposit.fin_prdt_cd} }" class="link-item">
+            {{ deposit.fin_prdt_nm }}
+          </router-link>
+        </div>
+        <div class="link-list" v-if="recommendedList.saving.length > 0">
+          <router-link v-for=" saving in recommendedList.saving" :key="saving.fin_prdt_nm" :to="{name: 'saving_detail', params: {saving_id : saving.fin_prdt_cd} }" class="link-item">
+            {{ saving.fin_prdt_nm }}
+          </router-link>
+        </div>
       </div>
       <hr>
     <div class="profileupdate">
       <button class="btn btn-outline-secondary"><RouterLink :to="{name: 'profile_update', params: {name: store.LoginName}}">프로필 수정</RouterLink></button>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -99,6 +105,8 @@ onMounted(async () => {
 
   store.getRecommended();
   recommended.value = store.recommended
+
+  divideRecommended(deposits, savings, recommended.value, recommendedList);
 });
 
 
@@ -106,6 +114,29 @@ console.log(userdata.value)
 watch(userdata, () => {
   userdata.value = store.userInfo
 })
+
+const deposits = store.deposits
+const savings = store.savings
+
+const recommendedList = ref({
+  'deposit': [],
+  'saving': [],
+})
+
+const divideRecommended = function (deposits, savings, recommended, recommendedList) {
+  for (const product of recommended) {
+    for (const deposit of deposits) {
+      if (deposit.fin_prdt_cd.includes(product)) {
+        recommendedList.value.deposit.push(deposit)
+      }
+    }
+    for (const saving of savings) {
+      if (saving.fin_prdt_cd.includes(product)) {
+        recommendedList.value.saving.push(saving)
+      }
+    }
+  }
+}
 
 </script>
 
