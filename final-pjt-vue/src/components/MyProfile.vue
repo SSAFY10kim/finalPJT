@@ -63,7 +63,6 @@
     <div class="profileupdate">
       <button class="btn btn-outline-secondary"><RouterLink :to="{name: 'profile_update', params: {name: store.LoginName}}">프로필 수정</RouterLink></button>
     </div>
-  </div>
 </template>
 
 <script setup>

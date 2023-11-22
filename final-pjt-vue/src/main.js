@@ -6,6 +6,7 @@ import router from './router'
 
 // bootstrap 3
 // npm install vue bootstrap bootstrap-vue-3
+// npm install bootstrap-icons-vue
 
 import BootstrapVue3 from 'bootstrap-vue-3';
 import 'bootstrap/dist/css/bootstrap.css'

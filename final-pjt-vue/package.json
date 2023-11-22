@@ -11,6 +11,7 @@
     "axios": "^1.6.1",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
+    "bootstrap-icons-vue": "^1.11.1",
     "bootstrap-vue-3": "^0.5.1",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.0",
