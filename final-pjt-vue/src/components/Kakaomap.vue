@@ -86,7 +86,7 @@
 
 .search_option span label {
   margin-right: 10px;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .map_wrap {

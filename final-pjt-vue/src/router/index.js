@@ -19,6 +19,8 @@ import ProfileUpdateView from '@/views/ProfileUpdateView.vue'
 import DepositDetailContent from '@/components/DepositDetailContent.vue'
 import SavingDetailContent from '@/components/SavingDetailContent.vue'
 import CommonSenseView from '@/views/CommonSenseView.vue'
+import NaverNews from '@/components/NaverNews.vue';
+import CardInfo from '@/components/CardInfo.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -120,6 +122,16 @@ const router = createRouter({
       path: '/common',
       name: 'common',
       component: CommonSenseView
+    },
+    {
+      path: '/common/news',
+      name: 'common_news',
+      component: NaverNews
+    },
+    {
+      path: '/common/card',
+      name: 'common_card',
+      component: CardInfo
     }
 
   ]

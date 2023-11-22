@@ -2,7 +2,7 @@
   <tr>
     <td class="border-right">{{ article.id }}</td>
     <td class="border-right">
-      <RouterLink :to="{ name: 'article_detail', params: { id: article.id }}">
+      <RouterLink :to="{ name: 'article_detail', params: { id: article.id }}" style="text-decoration: none;">
         {{ article.title }}
       </RouterLink>
     </td>
