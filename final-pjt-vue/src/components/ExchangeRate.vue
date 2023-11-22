@@ -1,18 +1,19 @@
 <template>
-  <div>
+  <div id="exchangepage">
+    <h1 style="margin-bottom: 40px;">환율 계산기</h1>
     <div class="calculator">
-      <label for="mymoney">기준 화폐 : </label>
+      <label for="mymoney"></label>
       <select v-model="myCountry">
         <option v-for="d in data" :value="d.deal_bas_r" :key="d.cur_nm">{{ d.cur_nm }}</option>
       </select>
       <input type="number" id="mymoney" v-model="myMoney" min="0">
-      <br>
-      <label for="changemoney">환전 금액 : </label>
+      <i class="bi bi-arrow-right-square-fill"></i>
+      <label for="changemoney"></label>
       <select v-model="changeCountry">
         <option v-for="d in data" :value="d.deal_bas_r" :key="d.cur_nm">{{ d.cur_nm }}</option>
       </select>
       <span>{{ changeMoney }}</span>
-      <span>{{ MoneyUnit }}</span>
+      <span v-show="check">{{ MoneyUnit }}</span>
     </div>
     <br>
     <table class="tg">
@@ -54,13 +55,14 @@ const japanMoney = ref(0)
 const indiaMoney = ref(0)
 
 const MoneyUnit = ref('')
+const check = ref(true)
 
 onMounted(() => {
   createExchangeMoney();
 });
 
 
-watch([myMoney, myCountry, changeCountry], () => {
+watch([myMoney, myCountry, changeCountry, check], () => {
   updateChangeMoney();
   console.log(changeMoney.value)
   console.log(myCountry.value)
@@ -78,6 +80,9 @@ watch([myMoney, myCountry, changeCountry], () => {
   if (changeCountry.value === myCountry.value) {
     window.alert('error!!!!')
     changeMoney.value = '다른나라 화폐를 선택해주세요'
+    check.value = false
+  } else {
+    check.value = true
   }
 });
 
@@ -121,4 +126,66 @@ const createExchangeMoney = () => {
 .tg td { border-color: black; border-style: solid; border-width: 1px; font-family: Arial, sans-serif; font-size: 14px; overflow: hidden; padding: 10px 5px; word-break: normal; }
 .tg th { border-color: black; border-style: solid; border-width: 1px; font-family: Arial, sans-serif; font-size: 14px; font-weight: normal; overflow: hidden; padding: 10px 5px; word-break: normal; }
 .tg .tg-0lax { text-align: left; vertical-align: top; }
+
+#exchangepage {
+  width: 85%;
+  margin: 0 auto;
+}
+
+#exchangepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tg {
+  margin: 0 auto;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+input {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+span {
+  margin-left: 10px;
+}
+
+.bi-arrow-right-square-fill {
+  color: black;
+  font-size: 20px;
+  margin: 0 10px;
+}
 </style>

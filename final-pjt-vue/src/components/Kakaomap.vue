@@ -1,5 +1,6 @@
 <template>
     <div class="map_wrap">
+      <h1>은행 검색</h1>
       <div>
         <div class="search_option">
             <span>
@@ -26,10 +27,10 @@
                 <option v-for="bank in banks" :key="bank">{{ bank }}</option>
               </select>
             </span>
+            <button @click="searchPlaces">검색하기</button>
           </div>
-          <button @click="searchPlaces">검색하기</button>
       </div>
-      <div id="map" style="width:90%;height:500px;position:relative;overflow:hidden;"></div>
+      <div id="map" style="width:90%; height:700px; position:relative;overflow:hidden;"></div>
       <div id="menu_wrap" class="bg_white">
         <ul id="placesList"></ul>
         <div id="pagination"></div> 
@@ -79,10 +80,60 @@
 .search_option {
   display: flex;
   margin-bottom: 50px;
+  font-size: 30px;
 }
 
 .search_option span {
   margin-right: 10px;
+}
+
+.map_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.search_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.search_option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search_option span {
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+}
+
+label {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+select,
+button {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
 }
 </style>
   
