@@ -163,8 +163,31 @@ export const useCounterStore = defineStore('counter', () => {
       })
   }
 
+  const recommended = ref([])
+
+  const getRecommended = function () {
+    if (isLogin.value === true) {
+    // console.log(userInfo.value.username)
+    axios({
+      method: 'get',
+      url: `${API_URL}/accounts/profile/${LoginName.value}/recommended/`,
+      params: { username: userInfo.value.username },
+      headers: {
+        Authorization: `Token ${token.value}`
+      }
+    })
+      .then((res) => {
+        // console.log(res.data)
+        recommended.value = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
+  }
+
 
   return { articles, API_URL, getArticles, signUp, logIn, token, isLogin, logOut,
           deposits, savings, getDeposits, getSavings, getComments, comments, searchKeyword,
-          getUser, LoginName, userInfo }
+          getUser, LoginName, userInfo, recommended, getRecommended }
 }, { persist: true })
