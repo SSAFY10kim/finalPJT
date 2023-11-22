@@ -19,14 +19,16 @@
     <p class="float-right">작성일 : {{ formattedDate }}</p>
     <p>작성자 : {{ article.user_username }}</p>
     <div>
-    <button class="btn btn-outline-secondary float-left">
+    <button class="btn btn-outline-secondary float-left" v-if="article.user_username === store.LoginName">
       <RouterLink :to="{name: 'article_update', params: {id: article.id}}" v-if="store.isLogin" style="text-decoration: none; color: black;">게시글 수정</RouterLink>
     </button>
     </div>
-    <button @click="confirmDelete(route.params.id)" v-if="store.isLogin" class="btn btn-outline-danger float-right">삭제</button>
-    </div><br><br><hr>
+    <div v-if="article.user_username === store.LoginName">
+      <button @click="confirmDelete(route.params.id)" v-if="store.isLogin" class="btn btn-outline-danger float-right">삭제</button>
+    </div>
+    </div>
     <div v-if="store.isLogin">
-      <div>
+      <div class="mt-3">
         <b-input-group size="lg" style="width: 100%;">
           <b-input-group-prepend>
             <b-input-group-text>댓글</b-input-group-text>
@@ -40,10 +42,10 @@
         </b-input-group>
       </div>
     </div>
-    <p v-if="article" style="font-size: 20px; margin-top: 20px;">댓글 갯수 :  {{ article.comment_count }}개</p>
-    <CommentsList :article-id="route.params.id" @commentDeleted="refreshArticle()"/>
-</div>
 
+    <p v-if="article" style="font-size: 20px; margin-top: 20px;">댓글 갯수 :  {{ article.comment_count }}개</p>
+    <CommentsList :article-id="route.params.id" @commentDeleted="refreshArticle"/>
+  </div>
 </template>
 
 <script setup>
@@ -53,6 +55,7 @@ import { useCounterStore } from '@/stores/counter'
 import { routerKey, useRoute, useRouter, RouterLink } from 'vue-router'
 import { onBeforeRouteLeave } from 'vue-router'
 import CommentsList from '@/components/CommentsList.vue'
+// import useCounterStore from '@/stores/counter'
 
 const store = useCounterStore()
 const route = useRoute()
