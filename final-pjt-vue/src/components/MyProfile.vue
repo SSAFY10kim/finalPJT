@@ -25,6 +25,12 @@
         </ul>
         <RouterLink v-else :to="{name: 'saving'}">관심 적금 목록을 추가해주세요</RouterLink>
       </div>
+      <div class="recommended">
+        <p>추천 상품 : </p>
+        <ul v-for="recommended_product in recommended">
+          {{ recommended_product }}
+        </ul>
+      </div>
       <hr>
       <!-- <p> {{ userdata }} </p> -->
     <RouterLink :to="{name: 'profile_update', params: {name: store.LoginName}}">프로필 수정</RouterLink>
@@ -58,6 +64,10 @@ onMounted(async () => {
   store.getUser();
   userdata.value = store.userInfo
   await nextTick();
+
+  store.getRecommended();
+  recommended.value = store.recommended
+  // await nextTick();
 
 });
 
