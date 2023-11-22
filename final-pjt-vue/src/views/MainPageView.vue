@@ -6,7 +6,6 @@
     <b-card
       title="예금"
       tag="article"
-      style="max-width: 25rem;"
     >
       <b-card-text>
         통장에 돈을 넣어놓고 '정해진 기간 동안 찾지 않는 예금'. 찾을 경우 이자를 손해봄. 쉽게 말하면 목돈을 넣어 놓고 매달 돈을 타 먹는 통장
@@ -15,7 +14,6 @@
     <b-card
       title="적금"
       tag="article"
-      style="max-width: 25rem;"
     >
       <b-card-text>
         매월 약속한 날짜에 꼬박꼬박 돈을 넣어서 목돈을 만들 때 이용하는 통장. 
@@ -24,7 +22,6 @@
     <b-card
       title="단리: "
       tag="article"
-      style="max-width: 25rem;"
     >
       <b-card-text>
         원금에만 이자가 붙어요
@@ -33,7 +30,6 @@
     <b-card
       title="복리"
       tag="article"
-      style="max-width: 25rem;"
     >
       <b-card-text>
         이자에도 이자가 붙어요
@@ -67,8 +63,15 @@ h1 {
 
 .card-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 10%;
-  margin-top: 5%;
 }
+
+article {
+  max-width: 25%;
+  margin: auto;
+  padding: auto;
+}
+
+
 </style>
