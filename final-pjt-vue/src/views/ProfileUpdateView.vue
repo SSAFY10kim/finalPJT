@@ -68,7 +68,7 @@ const bank = ref(userdata.bank)
 const updateProfile = function() {
   axios({
     method: 'put',
-    url: `${store.API_URL}/accounts/profile/${userdata.username}/update/`,
+    url: `${store.API_URL}/accounts/profile/update/${userdata.username}/`,
     data: {
         username: username.value,
         realname: realname.value,

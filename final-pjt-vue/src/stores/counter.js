@@ -170,7 +170,7 @@ export const useCounterStore = defineStore('counter', () => {
     // console.log(userInfo.value.username)
     axios({
       method: 'get',
-      url: `${API_URL}/accounts/profile/${LoginName.value}/recommended/`,
+      url: `${API_URL}/accounts/profile/recommended/${LoginName.value}/`,
       params: { username: userInfo.value.username },
       headers: {
         Authorization: `Token ${token.value}`
