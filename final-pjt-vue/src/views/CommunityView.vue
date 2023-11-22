@@ -1,9 +1,5 @@
 <template>
   <div>
-    <h1>커뮤니티</h1>
-    <RouterLink :to="{ name: 'article_create' }" v-if="store.LoginName">
-      [CREATE]
-    </RouterLink>
     <ArticleList />
   </div>
   <RouterView />

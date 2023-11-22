@@ -16,7 +16,7 @@
       <span v-show="check">{{ MoneyUnit }}</span>
     </div>
     <br>
-    <table class="tg">
+    <table class="tg table table-hover" style="width: 50%;">
       <thead>
         <tr>
           <th class="tg-0lax">국가</th>

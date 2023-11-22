@@ -8,14 +8,14 @@
         img-alt="Image"
         img-top
         tag="article"
-        style="max-width: 20rem;"
+        style="max-width: 25rem;"
       >
         <b-card-text>
           예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명예금 설명
         </b-card-text>
 
         <b-button>
-          <RouterLink :to="{ name: 'saving' }">예금</RouterLink>
+          <RouterLink :to="{ name: 'deposit' }">예금</RouterLink>
         </b-button>
       </b-card>
 
@@ -25,14 +25,14 @@
         img-alt="Image"
         img-top
         tag="article"
-        style="max-width: 20rem;"
+        style="max-width: 25rem;"
       >
         <b-card-text>
           적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명적금 설명
         </b-card-text>
 
         <b-button>
-          <RouterLink :to="{ name: 'deposit' }">적금</RouterLink>
+          <RouterLink :to="{ name: 'saving' }">적금</RouterLink>
         </b-button>
       </b-card>
     </div>
@@ -53,8 +53,8 @@ import { RouterLink, RouterView } from 'vue-router';
 .card-container {
   display: flex;
   justify-content: center;
-  gap: 20%;
-  margin-top: 8%;
+  gap: 10%;
+  margin-top: 5%;
 }
 
 button {
