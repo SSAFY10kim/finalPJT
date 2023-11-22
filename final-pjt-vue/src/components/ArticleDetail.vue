@@ -24,7 +24,7 @@
     </button>
     </div>
     <div v-if="article.user_username === store.LoginName">
-      <button @click="confirmDelete(route.params.id)" v-if="store.isLogin" class="btn btn-outline-danger float-right">삭제</button>
+      <button @click="confirmDelete(route.params.id)" v-if="store.isLogin" class="btn btn-outline-danger float-right" style="width: 74px;">삭제</button>
     </div>
     </div>
     <div v-if="store.isLogin">
