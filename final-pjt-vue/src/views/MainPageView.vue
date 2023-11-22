@@ -2,7 +2,7 @@
   <div class="mainpage">
     <img src="@/assets/Simplify.png" alt="Simplify Image" class="center-image">
   </div>
-  <div class="card-container">
+  <!-- <div class="card-container">
     <b-card
       title="예금"
       tag="article"
@@ -35,6 +35,24 @@
         이자에도 이자가 붙어요
       </b-card-text>
     </b-card>
+  </div> -->
+  <div class="container">
+    <div class="card">
+      <div class="card-title">예금</div>
+      <div class="card-text">통장에 돈을 넣어놓고 '정해진 기간 동안 찾지 않는 예금'. 찾을 경우 이자를 손해봄. 쉽게 말하면 목돈을 넣어 놓고 매달 돈을 타 먹는 통장</div>
+    </div>
+    <div class="card">
+      <div class="card-title">적금</div>
+      <div class="card-text">매월 약속한 날짜에 꼬박꼬박 돈을 넣어서 목돈을 만들 때 이용하는 통장.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">예금</div>
+      <div class="card-text">통장에 돈을 넣어놓고 '정해진 기간 동안 찾지 않는 예금'. 찾을 경우 이자를 손해봄. 쉽게 말하면 목돈을 넣어 놓고 매달 돈을 타 먹는 통장</div>
+    </div>
+    <div class="card">
+      <div class="card-title">적금</div>
+      <div class="card-text">매월 약속한 날짜에 꼬박꼬박 돈을 넣어서 목돈을 만들 때 이용하는 통장.</div>
+    </div>
   </div>
 </template>
 
@@ -61,7 +79,7 @@ h1 {
   text-align: center;
 }
 
-.card-container {
+/* .card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -71,7 +89,25 @@ article {
   max-width: 25%;
   margin: auto;
   padding: auto;
-}
+} */
 
-
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .card {
+    border: 1px solid #000;
+    margin: 0 5%;
+    padding: 20px;
+    flex-basis: 50%; /* 카드의 기본 너비, 필요에 따라 조정 */
+  }
+  .card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .card-text {
+    font-size: 16px;
+  }
 </style>
