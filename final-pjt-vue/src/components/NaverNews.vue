@@ -1,5 +1,6 @@
 <template>
-  <div class="commonpage">
+  <div class="commonpage text-center">
+    <h1><i class="bi bi-newspaper"></i> 경제 뉴스</h1>
     <div class="Fnews text-center">
       <div style="border-bottom: 1px solid black;"><h2>경제 뉴스</h2></div>
       <p v-for="news in newsList">

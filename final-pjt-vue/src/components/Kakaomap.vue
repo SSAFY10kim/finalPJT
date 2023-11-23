@@ -1,6 +1,6 @@
 <template>
     <div class="map_wrap">
-      <h1>근처 은행 검색</h1>
+      <h1><i class="bi bi-search" style="font-size: 30px;"></i> 근처 은행 검색</h1>
 
   <div>
     <div class="search_option">

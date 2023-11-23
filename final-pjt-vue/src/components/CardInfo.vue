@@ -1,6 +1,6 @@
 <template>
   <div class="cardpage text-center">
-    <h1>신용카드? 체크카드?</h1>
+    <h1><i class="bi bi-wallet2"></i> 신용카드? 체크카드?</h1>
     <div>
     <table class="tg" style="margin: 30px auto;">
 <thead>

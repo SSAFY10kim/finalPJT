@@ -1,6 +1,6 @@
 <template>
   <div class="articlepage">
-    <h1 class="text-center">자유 게시판</h1>
+    <h1 class="text-center"><i class="bi bi-chat"></i> 자유 게시판</h1>
     <template v-if="store.articles.length > -1">
       <table class="table table-hover" style="width: 90%; margin: 10px auto;">
         <thead class="thead-strong">
