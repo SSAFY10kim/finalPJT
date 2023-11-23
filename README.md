@@ -100,23 +100,23 @@
 
 ## 아키텍쳐
 
-![diagrams.drawio](assets\diagrams.drawio.png)
+![diagrams.drawio](assets/Simplify_ERD.png)
 
 ## 데이터베이스 모델링(ERD)
 
-![Simplify_ERD](assets\Simplify_ERD.png)
+![Simplify_ERD](assets/Simplify_ERD.png)
 
 
 
 ## 컴포넌트 구조
 
-![컴포넌트](assets\컴포넌트.png)
+![컴포넌트](assets/컴포넌트.png)
 
 
 
 ## 개발일지
 
-![image](assets\image.png)
+![image](assets/image.png)
 
 
 
