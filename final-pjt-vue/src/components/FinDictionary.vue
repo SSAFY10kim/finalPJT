@@ -69,4 +69,10 @@ const description = '금융 용어를 이해하는 것은 개인 재무 건강�
 .h-100 {
   height: 100%;
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #CCCCCC;
+  margin-top: 40px;
+}
 </style>

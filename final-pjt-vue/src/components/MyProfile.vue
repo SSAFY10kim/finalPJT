@@ -20,11 +20,11 @@
           <td style="text-align: center;">{{ userdata.gender }}</td>
         </tr>
         <tr>
-          <td style="text-align: center;">자산</td>
+          <td style="text-align: center;">자산 (￦)</td>
           <td style="text-align: center;">{{ userdata.money }}</td>
         </tr>
         <tr>
-          <td style="text-align: center;">연봉</td>
+          <td style="text-align: center;">연봉 (￦)</td>
           <td style="text-align: center;">{{ userdata.salary }}</td>
         </tr>
         <tr>
