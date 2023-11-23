@@ -35,6 +35,9 @@
             <RouterLink :to="{ name: 'search' }">근처 은행 찾기</RouterLink> 
           </b-button>
           <b-button class="custom-nav-button" variant="link">
+            <RouterLink :to="{ name: 'common' }">금융 상식</RouterLink> 
+          </b-button>
+          <b-button class="custom-nav-button" variant="link">
             <RouterLink :to="{ name: 'community' }">게시판</RouterLink>
           </b-button>
         </b-navbar-nav>
@@ -71,7 +74,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { useCounterStore } from '@/stores/counter'
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 const store = useCounterStore()
 
 // console.log(user)
@@ -90,7 +93,7 @@ const logOutWarning = function() {
 }
 
 .custom-nav-brand {
-  margin-left: 5%
+  margin-left: 0%
 }
 
 .custom-nav-button {
@@ -124,9 +127,6 @@ a {
   margin-right: 5%;
 }
 
-.nav-item {
-  
-}
 
 </style>
 

@@ -26,6 +26,9 @@ environ.Env.read_env(
 
 MONEY_API_KEY = env('MONEY_API_KEY')
 API_KEY_BANK = env('API_KEY_BANK')
+CLIENT_ID = env('CLIENT_ID')
+CLIENT_SECRET = env('CLIENT_SECRET')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
