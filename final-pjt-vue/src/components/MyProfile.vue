@@ -80,67 +80,65 @@
 import axios from 'axios';
 import { ref, onMounted, watch, nextTick, computed } from 'vue';
 import { useCounterStore } from '@/stores/counter';
-import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router';
 
 const store = useCounterStore();
-const router = useRouter()
+const router = useRouter();
 const userdata = computed(() => {
-  return store.userInfo
-})
+  return store.userInfo;
+});
 const recommended = computed(() => {
-  return store.recommended
-})
-// userdata.value = store.userInfo
-
-// const fetchData = () => {
-//   // 비동기 작업 예시 (예: API 호출)
-//   setTimeout(() => {
-//     store.getUser();
-//     userdata.value = store.userInfo;
-//   }, 1000); // 1초 뒤에 데이터 갱신
-// };
-
-
-onMounted(async () => {
-  // fetchData()
-  store.getUser();
-  userdata.value = store.userInfo
-  await nextTick();
-
-  store.getRecommended();
-  recommended.value = store.recommended
-
-  divideRecommended(deposits, savings, recommended.value, recommendedList);
+  return store.recommended;
 });
 
-
-console.log(userdata.value)
-watch(userdata, () => {
-  userdata.value = store.userInfo
-})
-
-const deposits = store.deposits
-const savings = store.savings
+const deposits = store.deposits;
+const savings = store.savings;
 
 const recommendedList = ref({
-  'deposit': [],
-  'saving': [],
-})
+  deposit: [],
+  saving: [],
+});
 
 const divideRecommended = function (deposits, savings, recommended, recommendedList) {
   for (const product of recommended) {
     for (const deposit of deposits) {
       if (deposit.fin_prdt_cd.includes(product)) {
-        recommendedList.value.deposit.push(deposit)
+        recommendedList.value.deposit.push(deposit);
       }
     }
     for (const saving of savings) {
       if (saving.fin_prdt_cd.includes(product)) {
-        recommendedList.value.saving.push(saving)
+        recommendedList.value.saving.push(saving);
       }
     }
   }
-}
+};
+
+const updateRecommendations = () => {
+  recommendedList.value.deposit = [];
+  recommendedList.value.saving = [];
+  divideRecommended(deposits, savings, recommended.value, recommendedList);
+};
+
+onMounted(async () => {
+  store.getUser();
+  userdata.value = store.userInfo;
+  await nextTick();
+
+  store.getRecommended();
+  recommended.value = store.recommended;
+
+  divideRecommended(deposits, savings, recommended.value, recommendedList);
+});
+
+watch(() => userdata.value, () => {
+  userdata.value = store.userInfo;
+});
+
+watch(() => recommended.value, () => {
+  recommended.value = store.recommended;
+  updateRecommendations();
+});
 
 </script>
 
