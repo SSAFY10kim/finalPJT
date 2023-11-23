@@ -136,4 +136,7 @@ a {
   margin: 0 auto;
 }
 
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
 </style>
