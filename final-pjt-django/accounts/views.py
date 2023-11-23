@@ -64,7 +64,7 @@ def k_means_clustering(request, username):
         # df_user = pd.DataFrame(user_data)
 
         # 유저 데이터 load
-        df_user = pd.read_csv(current_directory+'/fixtures/accounts/data.csv')
+        df_user = pd.read_csv(current_directory+'/fixtures/accounts/fin_data2.csv')
         df_user['gender'] = pd.to_numeric(df_user['gender'], errors='coerce')
 
         # # 결측치 확인
@@ -104,7 +104,7 @@ def k_means_clustering(request, username):
         # # 모델 훈련
         # kmeans.fit(data_scaled)
 
-        # joblib.dump(kmeans, current_directory+'/model/finance_model.pkl')
+        # joblib.dump(kmeans, current_directory+'/model/finance_model3.pkl')
 
         # # 유저 군집 라벨 추가
         # df_user['cluster'] = kmeans.labels_
@@ -132,7 +132,7 @@ def k_means_clustering(request, username):
         # plt.show()
 
         # 저장된 모델을 파일에서 불러오기
-        loaded_kmeans = joblib.load(current_directory+'/model/finance_model.pkl')
+        loaded_kmeans = joblib.load(current_directory+'/model/finance_model3.pkl')
 
         # 새로운 데이터를 DataFrame으로 만들기
         response_data['gender'] = 1 if response_data['gender'] == '남자' else 0
@@ -148,18 +148,21 @@ def k_means_clustering(request, username):
         # 동일한 클러스터에 있는 사용자의 금융 상품 추출
         financial_products = df_user.loc[df_user['cluster'] == predictions[0], 'product']
 
-        # 상품별 개수 계산
-        product_count = dict(Counter(','.join(financial_products).split(';')))
+        split_products = [item.strip(" []'") for sublist in [s.split(',') for s in financial_products] for item in sublist if item]
+
+        # Count the occurrences of each product
+        product_count = dict(Counter(split_products))
 
         # 개수별로 제품 정렬
         sorted_products = sorted(product_count.items(), key=lambda x: x[1], reverse=True)
 
         # 추천상품 표시
         recommend_list = []
-        for product, count in sorted_products[:6 ]:
+        for product, count in sorted_products[:7]:
             if product != '':
                 recommend_list.append(product)
-
+                print(recommend_list)
+        # print(sorted_products)
         # print(predictions)
         # print(recommend_list)
         

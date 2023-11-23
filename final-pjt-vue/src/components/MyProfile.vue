@@ -102,12 +102,12 @@ const recommendedList = ref({
 const divideRecommended = function (deposits, savings, recommended, recommendedList) {
   for (const product of recommended) {
     for (const deposit of deposits) {
-      if (deposit.fin_prdt_cd.includes(product)) {
+      if (deposit.fin_prdt_cd === product) {
         recommendedList.value.deposit.push(deposit);
       }
     }
     for (const saving of savings) {
-      if (saving.fin_prdt_cd.includes(product)) {
+      if (saving.fin_prdt_cd === product) {
         recommendedList.value.saving.push(saving);
       }
     }
