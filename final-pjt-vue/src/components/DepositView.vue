@@ -1,6 +1,6 @@
 <template>
     <div class="depositpage">
-        <h1>예금 상품 리스트</h1>
+        <h1><i class="bi bi-card-list"></i> 예금 상품 리스트</h1>
         <DepositProduct
             v-for="deposit in store.deposits"
             :key="deposit.id"

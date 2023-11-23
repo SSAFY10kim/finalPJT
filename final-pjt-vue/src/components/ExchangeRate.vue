@@ -1,6 +1,7 @@
 <template>
   <div id="exchangepage">
-    <h1 style="margin-bottom: 40px;">환율 계산기</h1>
+    <h1 style="margin-bottom: 20px;"><i class="bi bi-coin"></i> 환율 계산기</h1>
+    <p>환율은 국제 경제, 여행, 외국인 투자 등에 영향을 미치며, 이를 이해하면 금융 행위에 더 나은 판단을 내릴 수 있어 경제적 안정에 도움이 됩니다.</p>
     <div class="calculator">
       <label for="mymoney"></label>
       <select v-model="myCountry">

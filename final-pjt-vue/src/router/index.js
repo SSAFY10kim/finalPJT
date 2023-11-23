@@ -21,6 +21,8 @@ import SavingDetailContent from '@/components/SavingDetailContent.vue'
 import CommonSenseView from '@/views/CommonSenseView.vue'
 import NaverNews from '@/components/NaverNews.vue';
 import CardInfo from '@/components/CardInfo.vue';
+import FinDictionary from '@/components/FinDictionary.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -132,6 +134,11 @@ const router = createRouter({
       path: '/common/card',
       name: 'common_card',
       component: CardInfo
+    },
+    {
+      path: '/common/dictionary',
+      name: 'common_dictionary',
+      component: FinDictionary,
     }
 
   ]

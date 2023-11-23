@@ -1,6 +1,6 @@
 <template>
     <div class="savingpage">
-        <h1>적금 상품 리스트</h1>
+        <h1><i class="bi bi-card-list"></i> 적금 상품 리스트</h1>
         <SavingProduct
             v-for="saving in store.savings"
             :key="saving.id"
