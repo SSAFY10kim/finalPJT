@@ -86,6 +86,7 @@ const updateProfile = function() {
         console.log('updated profile', response.data);
         console.log(username, realname, age, money, salary, gender, bank)
         // router.push({name: 'main'})
+        store.getRecommended();
         router.push({ name: 'profile', params: {name: store.LoginName}})
         // router.replace({ name: 'profile', params: {name: store.LoginName}}) 
       })

@@ -15,6 +15,9 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import MinMaxScaler
 from collections import Counter
 import joblib
+import matplotlib.pyplot as plt
+import seaborn as sns
+from yellowbrick.cluster import KElbowVisualizer
 
 
 @permission_classes([IsAuthenticated])
@@ -67,11 +70,11 @@ def k_means_clustering(request, username):
         df_user = pd.read_csv(current_directory+'/fixtures/accounts/data.csv')
         df_user['gender'] = pd.to_numeric(df_user['gender'], errors='coerce')
 
-        # # 결측치 확인
+        # 결측치 확인
         # print(df_user.isnull().sum())
 
         # # features 선택
-        # data = df_user[['age','gender', 'money', 'salary']]
+        # data = df_user[['age', 'money', 'salary']]
 
 
         # # 정규화 진행
@@ -96,7 +99,7 @@ def k_means_clustering(request, username):
         #     visualizer.fit(data_scaled)
         # visualizer.show()
 
-        # k = 4
+        # k = 5
 
         # # 모델 생성
         # kmeans  = KMeans(n_clusters=k, init='k-means++', max_iter=300, random_state=0, n_init=10)
@@ -104,13 +107,13 @@ def k_means_clustering(request, username):
         # # 모델 훈련
         # kmeans.fit(data_scaled)
 
-        # joblib.dump(kmeans, current_directory+'/model/finance_model.pkl')
+        # joblib.dump(kmeans, current_directory+'/model/finance_model.pkl2')
 
-        # # 유저 군집 라벨 추가
+        # 유저 군집 라벨 추가
         # df_user['cluster'] = kmeans.labels_
 
 
-        # 시각화
+        # # 시각화
         # centers_s = kmeans.cluster_centers_
 
         # plt.figure(figsize=(20, 6))
@@ -126,19 +129,19 @@ def k_means_clustering(request, username):
         # plt.scatter(centers_s[:,0], centers_s[:,2], c='black', alpha=0.8, s=150)
 
         # plt.subplot(133)
-        # sns.scatterplot(x=X.iloc[:,0], y=X.iloc[:,3], data=df_user, hue=kmeans.labels_, palette='coolwarm')
-        # plt.scatter(centers_s[:,0], centers_s[:,3], c='black', alpha=0.8, s=150)
+        # sns.scatterplot(x=X.iloc[:,1], y=X.iloc[:,2], data=df_user, hue=kmeans.labels_, palette='coolwarm')
+        # plt.scatter(centers_s[:,1], centers_s[:,2], c='black', alpha=0.8, s=150)
 
         # plt.show()
 
         # 저장된 모델을 파일에서 불러오기
-        loaded_kmeans = joblib.load(current_directory+'/model/finance_model.pkl')
+        loaded_kmeans = joblib.load(current_directory+'/model/finance_model.pkl2')
 
         # 새로운 데이터를 DataFrame으로 만들기
         response_data['gender'] = 1 if response_data['gender'] == '남자' else 0
         new_data_df = pd.DataFrame([
-            [response_data['age'], response_data['gender'], response_data['money'], response_data['salary']]
-        ], columns=['age', 'gender', 'money', 'salary'])
+            [response_data['age'], response_data['money'], response_data['salary']]
+        ], columns=['age', 'money', 'salary'])
 
         # DataFrame을 사용하여 예측 수행
         predictions = loaded_kmeans.predict(new_data_df)
@@ -149,7 +152,8 @@ def k_means_clustering(request, username):
         financial_products = df_user.loc[df_user['cluster'] == predictions[0], 'product']
 
         # 상품별 개수 계산
-        product_count = dict(Counter(','.join(financial_products).split(';')))
+        # product_count = dict(Counter(','.join(financial_products).split(';')))
+        product_count = dict(Counter(item for sublist in [s.split(';') for s in financial_products] for item in sublist))
 
         # 개수별로 제품 정렬
         sorted_products = sorted(product_count.items(), key=lambda x: x[1], reverse=True)
@@ -160,7 +164,7 @@ def k_means_clustering(request, username):
             if product != '':
                 recommend_list.append(product)
 
-        # print(predictions)
-        # print(recommend_list)
+        print(predictions)
+        print(recommend_list)
         
         return Response(data=recommend_list, status=status.HTTP_200_OK)
