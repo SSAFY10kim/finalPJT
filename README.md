@@ -68,26 +68,61 @@
 
 ## 기술스택
 
-[![stackticon](https://firebasestorage.googleapis.com/v0/b/stackticon-81399.appspot.com/o/images%2F1700715198350?alt=media&token=94bc8fd7-aabd-4b37-a317-5c30e189385e)](https://github.com/msdio/stackticon)
+<div align=center><h1>📚 STACKS</h1></div>
+<div align=center>
+    <img src="https://img.shields.io/badge/windows 10-0078D6?style=for-the-badge&logo=windows 10&logoColor=white">
+    <img src="https://img.shields.io/badge/windows 11-0078D4?style=for-the-badge&logo=windows 11&logoColor=white">
+    <br>
+	<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+    <img src="https://img.shields.io/badge/css 3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+    <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+    <br>
+    <img src="https://img.shields.io/badge/vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white">
+    <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+    <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
+    <br>
+    <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+    <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
+    <img src="https://img.shields.io/badge/scikitlearn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white">
+    <br>
+    <img src="https://img.shields.io/badge/sqlite-003B57?style=for-the-badge&logo=sqlite&logoColor=white">
+    <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+    <br> 
+</div>
 
-<p align="center">   <img src="https://img.shields.io/badge/API-Kakao_Map-yellow?style=flat&logo=kakao&logoColor=white">    <img src="https://img.shields.io/badge/API-한국수출입은행-darkblue?style=flat">   <img src="https://img.shields.io/badge/API-금융감독원-skyblue?style=flat">   <img src="https://img.shields.io/badge/API-NAVER-lightgreen?style=flat&logo=naver">   <img src="https://img.shields.io/badge/Language-Python-007396?style=flat&logo=python&logoColor=white">    <img src="https://img.shields.io/badge/Language-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=white">    <img src="https://img.shields.io/badge/Database-Sqlite-green?style=flat&logo=sqlite&logoColor=white">    <img src="https://img.shields.io/badge/Framework-django-darkgreen?style=flat&logo=django&logoColor=white">   <img src="https://img.shields.io/badge/Framework-Vue-red?style=flat&logo=vue.js&logoColor=white">   <img src="https://img.shields.io/badge/Library-Bootstrap-purple?style=flat&logo=bootstrap&logoColor=white">   <img src="https://img.shields.io/badge/Library-pinia-orange?style=flat&logo=pinia&logoColor=white"> </p>
+## API
+
+<p align="center">   
+    <img src="https://img.shields.io/badge/Kakao_Map-yellow?style=flat&logo=kakao&logoColor=white">    
+    <img src="https://img.shields.io/badge/한국수출입은행-darkblue?style=flat">   <img src="https://img.shields.io/badge/금융감독원-skyblue?style=flat">   
+    <img src="https://img.shields.io/badge/NAVER-lightgreen?style=flat&logo=naver">
+</p>
+
+## 아키텍쳐
+
+![diagrams.drawio](.\README.assets\diagrams.drawio.png)
 
 ## 데이터베이스 모델링(ERD)
 
-![Simplify_ERD](C:\Users\SSAFY\Downloads\Simplify_ERD.png)
+![Simplify_ERD](.\README.assets\Simplify_ERD.png)
+
+
+
+## 컴포넌트 구조
+
+![컴포넌트](.\README.assets\컴포넌트.png)
+
+
 
 ## 개발일지
 
-![image (1)](C:\Users\SSAFY\Downloads\image (1).png)
+![image](.\README.assets\image.png)
 
-## 이슈관리
 
-## 서비스 구현
 
 ## 참고페이지
 
-<p align="center">   <img src="https://img.shields.io/badge/API-Kakao_Map-yellow?style=flat&logo=kakao&logoColor=white">    <img src="https://img.shields.io/badge/API-한국수출입은행-darkblue?style=flat">   <img src="https://img.shields.io/badge/API-금융감독원-skyblue?style=flat">   <img src="https://img.shields.io/badge/API-NAVER-lightgreen?style=flat&logo=naver">   <img src="https://img.shields.io/badge/API-Youtube-D22128?style=flat&logo=youtube">   <img src="https://img.shields.io/badge/Language-Python-007396?style=flat&logo=python&logoColor=white">    <img src="https://img.shields.io/badge/Language-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=white">    <img src="https://img.shields.io/badge/Database-Sqlite-green?style=flat&logo=sqlite&logoColor=white">    <img src="https://img.shields.io/badge/Framework-django-darkgreen?style=flat&logo=django&logoColor=white">   <img src="https://img.shields.io/badge/Framework-Vue-red?style=flat&logo=vue.js&logoColor=white">   <img src="https://img.shields.io/badge/Library-Bootstrap-purple?style=flat&logo=bootstrap&logoColor=white">   <img src="https://img.shields.io/badge/Library-pinia-orange?style=flat&logo=pinia&logoColor=white"> </p>
-
+[GPT]: https://chat.openai.com/
 [마이뱅크]: https://www.mibank.me/
 [뱅크샐러드]: https://www.banksalad.com/
 [bootstrapDoc]: https://getbootstrap.com/
