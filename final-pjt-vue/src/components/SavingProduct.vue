@@ -7,6 +7,9 @@
             <p style="display: inline-block;" class="like">관심 상품 </p>
             <button @click="likeSaving(saving.fin_prdt_cd)" v-if="checkLikes(saving)"><i class="bi bi-star-fill" style="font-size: 30px;"></i></button>
             <button @click="likeSaving(saving.fin_prdt_cd)" v-else style="font-size: 30px;"><i class="bi bi-star"></i></button>
+            <div class="text-center">
+                <p v-if="store.recommended.includes(saving.fin_prdt_cd)" style="font-size: 20px;">⭐{{ store.userInfo.realname }}님 추천 상품⭐</p>
+            </div>
         </div>
         <div class="savingcomponent">
             <div>
@@ -121,7 +124,7 @@ const likeSaving = function (temp) {
     }
     })
     .then((res) => {
-        console.log(res)
+        // console.log(res)
         if (res.data.is_like_saving) {
             alert('관심 목록에 추가되었습니다')
             buttonText.value = '즐겨찾기 제거'
@@ -132,7 +135,7 @@ const likeSaving = function (temp) {
         store.getUser()
     })
     .catch((err) => {
-        console.log(err)
+        // console.log(err)
     })
 }
 

@@ -49,7 +49,7 @@ const createArticle = function () {
       }
   })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       router.push({ name: 'community' })
     })
     .catch((err) => {

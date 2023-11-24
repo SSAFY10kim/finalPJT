@@ -65,10 +65,10 @@ onMounted(() => {
 
 watch([myMoney, myCountry, changeCountry, check], () => {
   updateChangeMoney();
-  console.log(changeMoney.value)
-  console.log(myCountry.value)
-  console.log(changeCountry.value)
-  console.log(changeMoney.value)
+  // console.log(changeMoney.value)
+  // console.log(myCountry.value)
+  // console.log(changeCountry.value)
+  // console.log(changeMoney.value)
 
   MoneyUnit.value = data.value.find(d => d.deal_bas_r === changeCountry.value).cur_unit
 
@@ -108,7 +108,7 @@ const createExchangeMoney = () => {
   axios
     .get(API_URL)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       data.value = res.data;
       myCountry.value = data.value[13].deal_bas_r; // 초기 선택값 설정
       changeCountry.value = data.value[22].deal_bas_r; // 초기 선택값 설정
@@ -117,7 +117,7 @@ const createExchangeMoney = () => {
       MoneyUnit.value = data.value[22].cur_unit
     })
     .catch(err => {
-      console.error(err);
+      // console.error(err);
     });
 };
 </script>

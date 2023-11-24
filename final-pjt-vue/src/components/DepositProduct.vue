@@ -7,6 +7,9 @@
             <p style="display: inline-block;" class="like">관심 상품 </p>
             <button @click="likeDeposit(deposit.fin_prdt_cd)" v-if="checkLikes(deposit)"><i class="bi bi-star-fill" style="font-size: 30px;"></i></button>
             <button @click="likeDeposit(deposit.fin_prdt_cd)" v-else style="font-size: 30px;"><i class="bi bi-star"></i></button>
+            <div class="text-center">
+                <p v-if="store.recommended.includes(deposit.fin_prdt_cd)" style="font-size: 20px;">⭐{{ store.userInfo.realname }}님 추천 상품⭐</p>
+            </div>
         </div>
         <div class="depositcomponent">
         <div>
@@ -94,7 +97,7 @@ axios({
 }
 })
     .then((res) => {
-        console.log(res)
+        // console.log(res)
         if (res.data.is_like_deposit) {
             alert('관심 목록에 추가되었습니다')
             buttonText.value = '즐겨찾기 제거'
@@ -105,7 +108,7 @@ axios({
         store.getUser()
     })
     .catch((err) => {
-        console.log(err)
+        // console.log(err)
     })
 }
 
@@ -122,7 +125,7 @@ const goDetail = (data) => {
 }
 
 const test = (temp) => {
-    console.log(temp)
+    // console.log(temp)
 }
 
 const highlightOption = (deposit_option) => {

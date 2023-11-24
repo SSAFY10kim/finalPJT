@@ -36,7 +36,7 @@ import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router'
 const store = useCounterStore()
 
-console.log(store.articles)
+// console.log(store.articles)
 </script>
 
 <style scoped>

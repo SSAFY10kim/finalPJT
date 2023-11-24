@@ -30,7 +30,7 @@ export const useCounterStore = defineStore('counter', () => {
       // }
     })
       .then((res) =>{
-        console.log(res)
+        // console.log(res)
         articles.value = res.data
       })
       .catch((err) => {
@@ -48,7 +48,7 @@ export const useCounterStore = defineStore('counter', () => {
         Authorization: `Token ${token.value}`
       }
     }).then((res) => {
-      console.log(res)
+      // console.log(res)
       comments.value = res.data
     }).catch((err) => {
       console.log(err)
@@ -68,8 +68,8 @@ export const useCounterStore = defineStore('counter', () => {
       }
     })
       .then((res) => {
-        console.log(res)
-        console.log('123123')
+        // console.log(res)
+        // console.log('123123')
         const password = password1
         logIn({ username, password })
       })
@@ -89,7 +89,7 @@ export const useCounterStore = defineStore('counter', () => {
       }
     })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         token.value = res.data.key
         LoginName.value = payload.username
         getUser()
@@ -111,7 +111,7 @@ export const useCounterStore = defineStore('counter', () => {
       }
     })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         userInfo.value = res.data
       })
       .catch((err) => {

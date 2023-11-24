@@ -32,10 +32,10 @@ onMounted(() => {
   })
     .then((response) => {
       newsList.value = response.data.items
-      console.log(response)
+      // console.log(response)
     })
     .catch((error) => {
-      console.error(error)
+      // console.error(error)
     })
 })
 

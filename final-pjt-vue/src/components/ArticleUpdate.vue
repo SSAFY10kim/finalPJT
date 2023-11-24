@@ -50,7 +50,7 @@
         content.value = res.data.content
       })
       .catch((err) => {
-        console.log(err)
+        // console.log(err)
       })
   })
 
@@ -67,7 +67,7 @@
         }
     })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         router.push({ name: 'community' })
       })
       .catch((err) => {

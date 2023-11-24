@@ -163,7 +163,7 @@ def k_means_clustering(request, username):
                 recommend_list.append(product)
                 print(recommend_list)
         # print(sorted_products)
-        # print(predictions)
+        print('cluster',predictions)
         # print(recommend_list)
         
         return Response(data=recommend_list, status=status.HTTP_200_OK)

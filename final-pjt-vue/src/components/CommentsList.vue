@@ -41,14 +41,14 @@ const deleteComment = function (id) {
       }
   })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       // 게시글 디테일로 emit
       emit('commentDeleted')
       // 삭제 성공 시, 다시 댓글 목록을 갱신
       store.getComments();
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       alert('댓글 삭제 중 오류가 발생했습니다.');
     });
 };

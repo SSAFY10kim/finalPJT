@@ -73,7 +73,7 @@ axios({
     //   }
 })
     .then((res) => {
-    console.log(res.data)
+    // console.log(res.data)
     article.value = res.data
     
     const date = new Date(article.value.updated_at);
@@ -103,7 +103,7 @@ const createComment = function () {
       }
   })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       // router.push({ name: `community/articles/${route.params.id}` })
       store.getComments();
       comment_content.value = ''
@@ -116,7 +116,7 @@ const createComment = function () {
           }
       })
         .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         article.value = res.data
         })
         .catch((err) => {
@@ -144,7 +144,7 @@ const deleteArticle = function(id) {
       }
   })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       store.getArticles()
       router.push({name: 'community'})
     })
@@ -163,7 +163,7 @@ const refreshArticle = function() {
       }
 })
     .then((res) => {
-    console.log(res.data)
+    // console.log(res.data)
     article.value = res.data
     })
     .catch((err) => {
