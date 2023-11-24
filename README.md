@@ -131,7 +131,7 @@
 > ## :memo: 프로젝트 후기
 
 > ## :rainbow: 참고페이지
-[GPT]: https://chat.openai.com/
-[마이뱅크]: https://www.mibank.me/
-[뱅크샐러드]: https://www.banksalad.com/
-[bootstrapDoc]: https://getbootstrap.com/
+[GPT](https://chat.openai.com/)
+[마이뱅크](https://www.mibank.me/)
+[뱅크샐러드](https://www.banksalad.com/)
+[bootstrapDoc](https://getbootstrap.com/)
