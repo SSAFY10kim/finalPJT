@@ -1,6 +1,6 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,2,3&height=250&section=header&text=Simplify&animation=fadeIn&fontColor=d6ace6&fontSize=90)
 
-<h2 style="color:purple;">개발기간</h2>
+> ## 개발기간
 
 2023.11.16(목) ~ 2023.11.24(금)
 
