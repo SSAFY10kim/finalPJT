@@ -106,32 +106,26 @@
 </p>
 
 > ## 아키텍쳐
-
-![diagrams.drawio](assets/diagrams.drawio.png)
+<p align="center">
+	![diagrams.drawio](assets/diagrams.drawio.png)
+</p>
 
 > ## 데이터베이스 모델링(ERD)
 
 ![Simplify_ERD](assets/Simplify_ERD.png)
 
-
-
 > ## 컴포넌트 구조
 
 ![컴포넌트](assets/컴포넌트.png)
-
-
 
 > ## 개발일지
 
 ![image](assets/image.png)
 
-
 > ## 금융 상품 추천 알고리즘 기술적 설명
 ㅁㄴㅇㅁㄴㅇ
 
-
 > ## 프로젝트 후기
-
 
 > ## 참고페이지
 
@@ -139,6 +133,3 @@
 [마이뱅크]: https://www.mibank.me/
 [뱅크샐러드]: https://www.banksalad.com/
 [bootstrapDoc]: https://getbootstrap.com/
-
-
-
