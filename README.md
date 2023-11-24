@@ -1,4 +1,4 @@
-# Simplify
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,2,3&height=300&section=header&text=Simplify&animation=fadeIn&fontColor=d6ace6&fontSize=90)
 
 ## 개발기간
 
